@@ -25,6 +25,7 @@
 -- ported to postgres 2002-07-09
 
 \i fs-contents-portlet-create.sql
+\i fs-admin-portlet-create.sql
 
 create function inline_0()
 returns integer as '
