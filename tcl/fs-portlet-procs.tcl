@@ -18,11 +18,8 @@ ad_library {
 
     Procedures to support the file-storage portlet
 
-    Copyright Openforce, Inc.
-    Licensed under GNU GPL v2
-
     @creation-date September 30 2001
-    @author arjun@openforce.net
+    @author Arjun Sanyal (arjun@openforce.net)
     @version $Id$
 
 }
@@ -36,7 +33,7 @@ namespace eval fs_portlet {
 
     ad_proc -private get_my_name {
     } {
-        return "fs_portlet"
+        return fs_portlet
     }
 
     ad_proc -public get_pretty_name {
@@ -56,6 +53,7 @@ namespace eval fs_portlet {
         {-folder_id:required}
         {-extra_params ""}
         {-force_region ""}
+        {-param_action:required}
     } {
         Adds a fs PE to the given page. If there's already and fs pe,
         it appends the values to the pe's params.
@@ -71,32 +69,33 @@ namespace eval fs_portlet {
 
         lappend extra_params [list package_id $package_id]
 
-        return [portal::add_element_or_append_id \
+        return [portal::add_element_parameters \
             -portal_id $portal_id \
             -page_name $page_name \
             -pretty_name [get_pretty_name] \
             -portlet_name [get_my_name] \
-	    -force_region $force_region \
-            -value_id $folder_id \
+            -force_region $force_region \
+            -param_action $param_action \
+            -value $folder_id \
             -key folder_id \
-            -extra_params [eval concat $extra_params]
+            -extra_params [eval concat $extra_params] 
         ]
     }
 
     ad_proc -public remove_self_from_page {
-        portal_id
-        package_id
-        folder_id
+        {-portal_id:required}
+        {-package_id:required}
+        {-folder_id:required}
     } {
           Removes a fs PE from the given page
     } {
         set extra_params [list package_id $package_id]
 
-        portal::remove_element_or_remove_id \
+        portal::remove_element_parameters \
             -portal_id $portal_id \
             -portlet_name [get_my_name] \
-            -value_id $folder_id \
-            -key "folder_id" \
+            -value $folder_id \
+            -key folder_id \
             -extra_params $extra_params
     }
 
