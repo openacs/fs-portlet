@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<message_catalog package_key="fs-portlet" package_version="0.1a" locale="ru_RU" charset="utf-8">
+
+  <msg key="byte">байт</msg>
+  <msg key="bytes">байт(а)</msg>
+  <msg key="create_new_folder">Создать новую папку</msg>
+  <msg key="create_url">Добавить URL</msg>
+  <msg key="item">док.</msg>
+  <msg key="items">документов</msg>
+  <msg key="pretty_name">Документы</msg>
+  <msg key="upload_file">Добавить файл</msg>
+  <msg key="view_details">детали</msg>
+</message_catalog>
