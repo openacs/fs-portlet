@@ -52,13 +52,17 @@
     <tr>
 <if @folders.type@ eq "Folder">
       <td>
+        <img border="0" src="@folders.url@graphics/folder.gif">
+      </td>
+      <td>
         <a href="@folders.url@?folder_id=@folders.object_id@">
-          <img border="0" src="@folders.url@graphics/folder.gif" width="15" height="13">&nbsp;@folders.name@
+          @folders.name@
         </a>
       </td>
       <td><small>@folders.type@</small></td>
 <if @folders.content_size@ eq 0>
       <td><small>0 items</small></td>
+      <td>&nbsp;</td>
 </if>
 <else>
   <if @folders.content_size@ gt 1>
@@ -70,20 +74,36 @@
 </else>
 </if>
 <else>
+<if @folders.type@ eq "URL">
       <td>
-        <a href="@folders.url@/download/@folders.name@?version_id=@folders.live_revision@">
-          <img border="0" src="@folders.url@graphics/file.gif" width="15" height="13">&nbsp;
+          <img border="0" src="@folders.url@graphics/file.gif">
+      </td>
+      <td>
+        <a href="@folders.url@url-goto?url_id=@folders.object_id@">@folders.name@</a>
+      </td>
+      <td><small>@folders.type@</small></td>
+      <td><small>&nbsp;</small></td>
+      <td><small>&nbsp;</small></td>
+</if>
+<else>
+      <td>
+          <img border="0" src="@folders.url@graphics/file.gif">
+      </td>
+      <td>
+        <a href="@folders.url@download/@folders.name@?version_id=@folders.live_revision@">
           @folders.name@
         </a>
       </td>
-      <td><small>File</small></td>
+      <td><small>@folders.type@</small></td>
+      <td><small>@folders.content_size@ byte<if @folders.content_size ne 1>s</if></small></td>
       <td>
-        <a href="@folders.url@file?file_id=@folders.object_id@">
-          <small>[&nbsp;
+        <small>[&nbsp;
+          <a href="@folders.url@file?file_id=@folders.object_id@">
             view details
-          &nbsp;]</small>
-        </a>
+          </a>
+        &nbsp;]</small>
       </td>
+</else>
 </else>
     </tr>  
 </multiple>

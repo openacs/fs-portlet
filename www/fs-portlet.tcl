@@ -37,6 +37,7 @@ ad_page_contract {
 array set config $cf
 set user_id [ad_conn user_id]
 set list_of_folder_ids $config(folder_id)
+set style $config(style)
 
 set user_root_folder [dotlrn_fs::get_user_root_folder -user_id $user_id]
 set user_root_folder_present_p 0
@@ -44,6 +45,7 @@ set write_p 0
 set admin_p 0
 set delete_p 0
 set url ""
+
 if {![empty_string_p $user_root_folder] && [lsearch -exact $list_of_folder_ids $user_root_folder] != -1} {
     set user_root_folder_present_p 1
 
@@ -58,21 +60,11 @@ if {![empty_string_p $user_root_folder] && [lsearch -exact $list_of_folder_ids $
     set url [portal::mapping::get_url -object_id $user_root_folder]
 }
 
-form create n_past_days_form
-
-set options {{0 -1} {1 1} {2 2} {3 3} {7 7} {14 14} {30 30}}
-element create n_past_days_form n_past_days \
-    -label "" \
-    -datatype text \
-    -widget select \
-    -options $options \
-    -html {onChange document.n_past_days_form.submit()} \
-    -value $n_past_days
-
-if {[form is_valid n_past_days_form]} {
-    form get_values n_past_days_form n_past_days
+set query "select_folder_contents"
+if {![string equal $style "tree"]} {
+    set query "select_folders"
 }
 
-db_multirow folders select_fs_objects {}
+db_multirow folders $query {}
 
 ad_return_template 
