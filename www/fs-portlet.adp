@@ -43,17 +43,6 @@
       </td>
     </tr>
 </if>
-<if @admin_p@ true>
-    <tr><td colspan="2"><br></td></tr>
-    <tr>
-      <td><li></td>
-      <td>
-        <a href="/permissions/one?object_id=@user_root_folder@">
-          Modify permissions on your personal folder
-        </a>
-      </td>
-    </tr>
-</if>
     <tr><td colspan="2"><br></td></tr>
   </table>
 </if>
