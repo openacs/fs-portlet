@@ -27,11 +27,11 @@
       <td>
         <nobr>
           <small>[
-            <a href="@url@folder-create?parent_id=@folder_id@">Create a new folder</a>
+            <a href="@url@folder-create?parent_id=@folder_id@">#fs-portlet.create_new_folder#</a>
             |
-            <a href="@url@file-add?folder_id=@folder_id@">Upload a file</a>
+            <a href="@url@file-add?folder_id=@folder_id@">#fs-portlet.upload_file#</a>
             |
-            <a href="@url@simple-add?folder_id=@folder_id@">Create a URL</a>
+            <a href="@url@simple-add?folder_id=@folder_id@">#fs-portlet.create_url#</a>
           ]</small>
         </nobr>
       </td>
@@ -41,8 +41,8 @@
         <br>
         <nobr>
           <small>
-            View files modified in the last
-            <a href="@contents_url@n_past_days=999999">All</a>
+            #fs-portlet.view_past_mod_files#
+            <a href="@contents_url@n_past_days=999999">#fs-portlet.all#</a>
             |
             <a href="@contents_url@n_past_days=1">1</a>
             |
@@ -55,7 +55,7 @@
             <a href="@contents_url@n_past_days=14">14</a>
             |
             <a href="@contents_url@n_past_days=30">30</a>
-            days.
+            #fs-portlet.days#.
           </small>
         </nobr>
       </td>
@@ -80,15 +80,15 @@
       </td>
       <td><small>@folders.type@</small></td>
 <if @folders.content_size@ eq 0>
-      <td><small>0 items</small></td>
+      <td><small>0 #fs-portlet.items#</small></td>
       <td>&nbsp;</td>
 </if>
 <else>
   <if @folders.content_size@ gt 1>
-      <td><small>@folders.content_size@ items</small></td>
+      <td><small>@folders.content_size@ #fs-portlet.items#</small></td>
   </if>
   <else>
-      <td><small>@folders.content_size@ item</small></td>
+      <td><small>@folders.content_size@ #fs-portlet.item#</small></td>
   </else>
 </else>
 </if>
@@ -112,11 +112,11 @@
         <a href="@folders.url@download/@folders.name@?version_id=@folders.live_revision@">@folders.name@</a>
       </td>
       <td><small>@folders.type@</small></td>
-      <td><small>@folders.content_size@ byte<if @folders.content_size ne 1>s</if></small></td>
+      <td><small>@folders.content_size@ <if @folders.content_size eq 1>#fs-portlet.byte#</if><else>#fs-portlet.bytes#</else></small></td>
       <td>
         <nobr>
           <small>[
-            <a href="@folders.url@file?file_id=@folders.object_id@">view details</a>
+            <a href="@folders.url@file?file_id=@folders.object_id@">#fs-portlet.view_details#</a>
           ]</small>
         </nobr>
       </td>
@@ -130,3 +130,4 @@
 <else>
   &nbsp;
 </else>
+

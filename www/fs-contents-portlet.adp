@@ -25,9 +25,9 @@
         <td colspan="4">
           <nobr>
             <small>[
-              <a href="@url@file-add?folder_id=@folder_id@">Upload a file</a>
+              <a href="@url@file-add?folder_id=@folder_id@">#fs-portlet.upload_file#</a>
               |
-              <a href="@url@simple-add?folder_id=@folder_id@">Create a URL</a>
+              <a href="@url@simple-add?folder_id=@folder_id@">#fs-portlet.create_url#</a>
             ]</small>
           </nobr>
           <br><br>
@@ -44,14 +44,14 @@
         <td><a href="@folders.url@?folder_id=@folders.object_id@">@folders.name@</a></td>
         <td><small>@folders.type@</small></td>
 <if @folders.content_size@ eq 0>
-        <td><small>0 items</small></td>
+        <td><small>0 #fs-portlet.items#</small></td>
 </if>
 <else>
 <if @folders.content_size@ gt 1>
-        <td><small>@folders.content_size@ items</small></td>
+        <td><small>@folders.content_size@ #fs-portlet.items#</small></td>
 </if>
 <else>
-        <td><small>@folders.content_size@ item</small></td>
+        <td><small>@folders.content_size@ #fs-portlet.item#</small></td>
 </else>
 </else>
 </if>
@@ -66,7 +66,7 @@
         <td><img border="0" src="@folders.url@graphics/file.gif"></td>
         <td><a href="@folders.url@download/@folders.name@?version_id=@folders.live_revision@">@folders.name@</a></td>
         <td><small>@folders.type@</small></td>
-        <td><small>@folders.content_size@ byte<if @folders.content_size ne 1>s</if></small></td>
+        <td><small>@folders.content_size@ <if @folders.content_size@ eq 1>#fs-portlet.byte#</if><else>#fs-portlet.bytes#</else></small></td>
 </else>
 </else>
 
@@ -75,3 +75,4 @@
 </multiple>
 
     </table>
+

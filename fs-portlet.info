@@ -39,7 +39,7 @@
             <file type="content_page" path="www/fs-portlet.tcl"/>
         </files>
         <parameters>
-            <parameter datatype="string"  min_n_values="1"  max_n_values="1"  name="pretty_name"  default="Documents" description="The name to show in the title bar of a portlet"/>
+            <parameter datatype="string"  min_n_values="1"  max_n_values="1"  name="pretty_name"  default="#fs-portlet.pretty_name#" description="The name to show in the title bar of a portlet"/>
         </parameters>
 
     </version>
