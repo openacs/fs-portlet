@@ -38,6 +38,7 @@ namespace eval fs_portlet {
     }
 
     ad_proc -public add_self_to_page { 
+        {-page_id ""}
 	portal_id 
 	instance_id
 	folder_id 
@@ -53,6 +54,7 @@ namespace eval fs_portlet {
 	@creation-date Sept 2001
     } {
         return [portal::add_element_or_append_id -portal_id $portal_id \
+                -page_id $page_id \
                 -portlet_name [my_name] \
                 -value_id $folder_id \
                 -key folder_id]
