@@ -147,7 +147,7 @@ namespace eval fs_portlet {
                         }
                     } else {
                         set type "File"
-                        append data "<tr><td><a href=${url}file?file_id=$file_id><img border=0 src=${url}graphics/file.gif width=15 height=13>$name</a></td><td><a href=${url}/download/$name?version_id=$file_live_rev><small>\[download\]</small></a></td>"
+                        append data "<tr><td><a href=${url}file?file_id=$file_id><img border=0 src=${url}graphics/file.gif width=15 height=13>$name</a></td><td></td><td><a href=${url}/download/$name?version_id=$file_live_rev><small>\[download\]</small></a></td>"
                     }
                     append template "\n$data\n"
                 }
