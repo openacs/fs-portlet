@@ -50,10 +50,10 @@
   <table class="table-display" border="0" cellpadding="3" cellspacing="0" width="100%">
     <multiple name="folders">
        <if @folders.rownum@ odd>
-          <tr class="z_dark">
+          <tr class="odd">
        </if>
        <else>
-          <tr class="z_light">
+          <tr class="even">
        </else>
 
        <if @folders.type@ eq "folder">
