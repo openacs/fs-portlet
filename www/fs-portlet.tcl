@@ -52,7 +52,7 @@ if {![empty_string_p $user_root_folder] && [lsearch -exact $list_of_folder_ids $
     set folder_id [lindex $list_of_folder_ids 0]
 }
 
-set url [portal::mapping::get_url -object_id $folder_id]
+set url [site_node_object_map::get_url -object_id $folder_id]
 set contents_url [lindex $config(contents_url) 0]
 
 if {[empty_string_p $contents_url]} {
