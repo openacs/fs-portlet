@@ -65,7 +65,21 @@
      </tr>  
 
   </multiple>
-  </table>
+ 
+  <if @write_p@ true>
+    <table border=0>
+      <tr>
+        <td>
+          <small><a href="@url@file-add?folder_id=@folder_id@">Upload a file</a></small>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <small><a href="@url@simple-add?folder_id=@folder_id@">Create a URL</a></small>
+        </td>
+      </tr>
+    </table>
+  </if>
 
 </else>
 </if>
