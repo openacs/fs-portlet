@@ -24,42 +24,40 @@
 <if @write_p@ true>
   <table>
     <tr>
-      <td width="5%"><li></td>
       <td>
-        <a href="@url@file-add?folder_id=@folder_id@">
-          Upload a file
-        </a>
-        &nbsp;&nbsp;|&nbsp;&nbsp;
-        <a href="@url@simple-add?folder_id=@folder_id@">
-          Create a URL
-        </a>
-    </tr>
-    <tr>
-      <td><li></td>
-      <td>
-        <a href="@url@folder-create?parent_id=@folder_id@">
-          Create a new folder
-        </a>
+        <nobr>
+          <small>[
+            <a href="@url@folder-create?parent_id=@folder_id@">Create a new folder</a>
+            |
+            <a href="@url@file-add?folder_id=@folder_id@">Upload a file</a>
+            |
+            <a href="@url@simple-add?folder_id=@folder_id@">Create a URL</a>
+          ]</small>
+        </nobr>
       </td>
     </tr>
     <tr>
-      <td><li></td>
       <td>
-        View files modified in the last
-        <a href="@contents_url@n_past_days=999999">All</a>
-        |
-        <a href="@contents_url@n_past_days=1">1</a>
-        |
-        <a href="@contents_url@n_past_days=2">2</a>
-        |
-        <a href="@contents_url@n_past_days=3">3</a>
-        |
-        <a href="@contents_url@n_past_days=7">7</a>
-        |
-        <a href="@contents_url@n_past_days=14">14</a>
-        |
-        <a href="@contents_url@n_past_days=30">30</a>
-        days.
+        <br>
+        <nobr>
+          <small>
+            View files modified in the last
+            <a href="@contents_url@n_past_days=999999">All</a>
+            |
+            <a href="@contents_url@n_past_days=1">1</a>
+            |
+            <a href="@contents_url@n_past_days=2">2</a>
+            |
+            <a href="@contents_url@n_past_days=3">3</a>
+            |
+            <a href="@contents_url@n_past_days=7">7</a>
+            |
+            <a href="@contents_url@n_past_days=14">14</a>
+            |
+            <a href="@contents_url@n_past_days=30">30</a>
+            days.
+          </small>
+        </nobr>
       </td>
     </tr>
   </table>
@@ -111,18 +109,16 @@
           <img border="0" src="@folders.url@graphics/file.gif">
       </td>
       <td>
-        <a href="@folders.url@download/@folders.name@?version_id=@folders.live_revision@">
-          @folders.name@
-        </a>
+        <a href="@folders.url@download/@folders.name@?version_id=@folders.live_revision@">@folders.name@</a>
       </td>
       <td><small>@folders.type@</small></td>
       <td><small>@folders.content_size@ byte<if @folders.content_size ne 1>s</if></small></td>
       <td>
-        <small>[&nbsp;
-          <a href="@folders.url@file?file_id=@folders.object_id@">
-            view details
-          </a>
-        &nbsp;]</small>
+        <nobr>
+          <small>[
+            <a href="@folders.url@file?file_id=@folders.object_id@">view details</a>
+          ]</small>
+        </nobr>
       </td>
 </else>
 </else>

@@ -20,6 +20,21 @@
 
     <table border="0" cellpadding="2" cellspacing="2" width="100%">
 
+<if @write_p@ true>
+      <tr>
+        <td colspan="4">
+          <nobr>
+            <small>[
+              <a href="@url@file-add?folder_id=@folder_id@">Upload a file</a>
+              |
+              <a href="@url@simple-add?folder_id=@folder_id@">Create a URL</a>
+            ]</small>
+          </nobr>
+          <br><br>
+        </td>
+      </tr>
+</if>
+
 <multiple name="folders">
 
       <tr>
@@ -58,20 +73,5 @@
       </tr>
 
 </multiple>
-
-<if @write_p@ true>
-      <tr>
-        <td colspan="4">
-          <br>
-          <nobr>
-            <small>
-              <a href="@url@file-add?folder_id=@folder_id@">Upload a file</a>
-              |
-              <a href="@url@simple-add?folder_id=@folder_id@">Create a URL</a>
-            </small>
-          </nobr>
-        </td>
-      </tr>
-</if>
 
     </table>
