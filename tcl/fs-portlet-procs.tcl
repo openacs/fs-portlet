@@ -56,6 +56,7 @@ namespace eval fs_portlet {
     ad_proc -public add_self_to_page {
         {-page_id ""}
         {-extra_params ""}
+        {-force_region ""}
         portal_id
         instance_id
         folder_id
@@ -82,6 +83,7 @@ namespace eval fs_portlet {
             -page_id $page_id \
             -pretty_name [get_pretty_name] \
             -portlet_name [my_name] \
+	    -force_region $force_region \
             -value_id $folder_id \
             -key folder_id \
             -extra_params [eval concat $extra_params]
