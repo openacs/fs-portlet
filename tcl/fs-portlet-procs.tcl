@@ -108,7 +108,7 @@ namespace eval fs_portlet {
 	set rowcount 0
 
 	db_foreach select_files_and_folders $query {
-	    append data "<tr><td>$name</td><td>$path</td><td>$content_size</td><td>type</td><td>$last_modified</td>"
+	    append data "<tr><td>$name</td><td>$path</td><td>$content_size</td><td>$type</td><td>$last_modified</td>"
 	    incr rowcount
 	} 
 
@@ -155,6 +155,19 @@ namespace eval fs_portlet {
 		portal::remove_element $element_id
 	    }
 	}
+    }
+
+    ad_proc -public make_self_available { 
+ 	page_id 
+    } {
+ 	Wrapper for the portal:: proc
+ 	
+ 	@param page_id
+ 	@author arjun@openforce.net
+ 	@creation-date Nov 2001
+    } {
+ 	portal::make_datasource_available \
+ 		$page_id [get_datasource_id [my_name]]
     }
 }
 
