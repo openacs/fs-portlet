@@ -81,7 +81,7 @@
         <else>
           <if @folders.type@ eq "url">
              <td>
-              <a href="@folders.url@url-goto?url_id=@folders.object_id@"><img border="0" src="/graphics/file.gif"></a>
+              <a href="@folders.url@url-goto?url_id=@folders.object_id@"><img border="0" src="graphics/file.gif"></a>
              </td>
              <td>
              <a href="@folders.url@url-goto?url_id=@folders.object_id@">@folders.name@</a>
@@ -92,7 +92,7 @@
           </if>
           <else>
              <td>
-              <a href="@folders.url@download/@folders.file_upload_name@?version_id=@folders.live_revision@"><img border="0" src="/graphics/file.gif"></a>
+              <a href="@folders.url@download/@folders.file_upload_name@?version_id=@folders.live_revision@"><img border="0" src="graphics/file.gif"></a>
              </td>
              <td>
              <a href="@folders.url@download/@folders.file_upload_name@?version_id=@folders.live_revision@">@folders.name@</a>
