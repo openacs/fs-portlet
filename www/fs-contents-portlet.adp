@@ -18,22 +18,8 @@
 
 %>
 
-    <table border="0" cellpadding="2" cellspacing="2" width="100%">
-
-<if @write_p@ true>
-      <tr>
-        <td colspan="4">
-          <nobr>
-            <small>[
-              <a href="@url@file-add?folder_id=@folder_id@">#fs-portlet.upload_file#</a>
-              |
-              <a href="@url@simple-add?folder_id=@folder_id@">#fs-portlet.create_url#</a>
-            ]</small>
-          </nobr>
-          <br><br>
-        </td>
-      </tr>
-</if>
-</table>
-<include src=@scope_fs_url@ folder_id=@folder_id@ root_folder_id=@folder_id@ viewing_user_id=@user_id@ n_past_days=@n_past_days@ fs_url="@url@">
+<include src=@scope_fs_url@ folder_id=@folder_id@ root_folder_id=@root_folder_id@ viewing_user_id=@user_id@ n_past_days=@n_past_days@ fs_url="@url@">
 <p>@notification_chunk;noquote@</p>
+<if @webdav_url@ not nil>
+      <p>#file-storage.Folder_available_via_WebDAV_at#</p>
+</if>

@@ -29,9 +29,6 @@ ad_page_contract {
     user_id:onevalue
     user_root_folder:onevalue
     user_root_folder_present_p:onevalue
-    write_p:onevalue
-    admin_p:onevalue
-    delete_p:onevalue
     url:onevalue
     folders:multirow
     n_folders:onevalue
@@ -47,22 +44,24 @@ if {$n_folders != 1} {
     ad_return -error
 }
 
+# Get the root folder for the file storage instance we belong to, which is defined as the
+# one mounted beneath the current package (dotlrn or acs-subsite).  Root folder should really
+# be a parameter to the portlet, something I'll consider for 5.2/2.2.
+
+set file_storage_node_id [site_node::get_node_id_from_object_id \
+                             -object_id [ad_conn package_id]]
+set file_storage_package_id [site_node::get_children \
+                                -package_key file-storage \
+                                -node_id $file_storage_node_id \
+                                -element package_id]
+set root_folder_id [fs::get_root_folder -package_id $file_storage_package_id]
+
 set folder_id [lindex $list_of_folder_ids 0]
 set scope_fs_url "/packages/file-storage/www/folder-chunk"
 set n_past_days ""
 set url [site_node_object_map::get_url -object_id $folder_id]
 set recurse_p 1
 set contents_url "${url}folder-contents?[export_vars {folder_id recurse_p}]&"
-
-set admin_p [permission::permission_p -object_id $folder_id -privilege "admin"]
-set write_p $admin_p
-if {!$write_p} {
-    set write_p [permission::permission_p -object_id $folder_id -privilege "write"]
-}
-set delete_p $admin_p
-if {!$delete_p} {
-    set delete_p [permission::permission_p -object_id $folder_id -privilege "delete"]
-}
 
 # Enable Notifications
 
@@ -73,5 +72,13 @@ set notification_chunk [notification::display::request_widget \
     -pretty_name $folder_name \
     -url [ad_conn url]?folder_id=$folder_id \
     ]
+
+if [exists_and_not_null file_storage_package_id] {
+    set use_webdav_p  [parameter::get -package_id $file_storage_package_id -parameter "UseWebDavP"]
+    
+    if { $use_webdav_p == 1} { 
+	set webdav_url [fs::webdav_url -item_id $folder_id -package_id $file_storage_package_id]
+    }
+}
 
 ad_return_template 

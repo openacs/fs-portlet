@@ -20,6 +20,12 @@
 
 <if @config.shaded_p@ false>
 
+<if @scoped_p@ eq 1>
+<include src=@scope_fs_url@ folder_id=@folder_id@ root_folder_id=@folder_id@ viewing_user_id=@user_id@ n_past_days=@n_past_days@ fs_url="@url@">
+</if>
+
+<else>
+
 <if @write_p@ true>
   <table width="100%">
     <tr>
@@ -38,13 +44,6 @@
   </table>
 
 </if>
-
-
-<if @scoped_p@ eq 1>
-<include src=@scope_fs_url@ folder_id=@folder_id@ root_folder_id=@folder_id@ viewing_user_id=@user_id@ n_past_days=@n_past_days@ fs_url="@url@">
-</if>
-
-<else>
 
   <table class="table-display" border="0" cellpadding="3" cellspacing="0" width="100%">
     <multiple name="folders">
@@ -118,4 +117,7 @@
 
 <p>@notification_chunk;noquote@</p>
 
+<if @webdav_url@ not nil>
+      <p>#file-storage.Folder_available_via_WebDAV_at#</p>
+</if>
 

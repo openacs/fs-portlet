@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
-<message_catalog package_key="fs-portlet" package_version="2.0.3" locale="de_DE" charset="ISO-8859-1">
+<message_catalog package_key="fs-portlet" package_version="2.1.0b1" locale="de_DE" charset="ISO-8859-1">
 
   <msg key="byte">Byte</msg>
   <msg key="bytes">Bytes</msg>
   <msg key="create_new_folder">Neuen Ordner erstellen</msg>
   <msg key="create_url">Neue URL hinzufügen</msg>
+  <msg key="edit_upload_size_limit">Größenlimit für Uploads verändern</msg>
   <msg key="item">Element</msg>
   <msg key="items">Elemente</msg>
   <msg key="pretty_name">Dateien</msg>

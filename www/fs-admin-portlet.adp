@@ -20,6 +20,6 @@
 
 
 <ul>
-  <li><a href=file-storage/admin/upload-size-limit?<%=[export_url_vars return_url]%>>Edit Upload Size Limit</a>
-
+  <li><a href=file-storage/admin/upload-size-limit?<%=[export_url_vars return_url]%>>#fs-portlet.edit_upload_size_limit#</a>
+ <li><a href=@fs_url@>#fs-portlet.edit_fs_parameters#</a>
 </ul>

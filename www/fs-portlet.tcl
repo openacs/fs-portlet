@@ -50,6 +50,12 @@ if {![empty_string_p $user_root_folder] && [lsearch -exact $list_of_folder_ids $
     set user_root_folder_present_p 1
 } else {
     set folder_id [lindex $list_of_folder_ids 0]
+    set file_storage_node_id [site_node::get_node_id_from_object_id \
+                             -object_id [ad_conn package_id]]
+    set file_storage_package_id [site_node::get_children \
+                                -package_key file-storage \
+                                -node_id $file_storage_node_id \
+                                -element package_id]
 }
 
 set url [site_node_object_map::get_url -object_id $folder_id]
@@ -62,14 +68,16 @@ if {[empty_string_p $contents_url]} {
     set contents_url "${contents_url}?"
 }
 
-set admin_p [permission::permission_p -object_id $folder_id -privilege "admin"]
-set write_p $admin_p
-if {!$write_p} {
-    set write_p [permission::permission_p -object_id $folder_id -privilege "write"]
-}
-set delete_p $admin_p
-if {!$delete_p} {
-    set delete_p [permission::permission_p -object_id $folder_id -privilege "delete"]
+if { !$scoped_p } {
+    set admin_p [permission::permission_p -object_id $folder_id -privilege "admin"]
+    set write_p $admin_p
+    if {!$write_p} {
+        set write_p [permission::permission_p -object_id $folder_id -privilege "write"]
+    }
+    set delete_p $admin_p
+    if {!$delete_p} {
+        set delete_p [permission::permission_p -object_id $folder_id -privilege "delete"]
+    }
 }
 
 set query "select_folders"
@@ -91,5 +99,14 @@ set notification_chunk [notification::display::request_widget \
     -pretty_name $folder_name \
     -url [ad_conn url]?folder_id=$folder_id \
     ]
+
+if [exists_and_not_null file_storage_package_id] {
+    set use_webdav_p  [parameter::get -package_id $file_storage_package_id -parameter "UseWebDavP"]
+    
+    if { $use_webdav_p == 1} { 
+	set webdav_url [fs::webdav_url -item_id $folder_id -package_id $file_storage_package_id]
+    }
+}
+
 
 ad_return_template 
