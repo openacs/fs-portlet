@@ -73,8 +73,6 @@ namespace eval fs_portlet {
 	# get user_id from the conn at this point
 	set user_id [ad_conn user_id]
 
-	ns_log notice "AKS54 got here"
-
 	# a big-time query from file-storage
 	set query "
 	select i.item_id as file_id,
@@ -126,8 +124,6 @@ namespace eval fs_portlet {
 	$data
 	</table>"
 
-	ns_log notice "AKS52 got here $rowcount"
-
 	if {!$rowcount} {
 	    set template "<i>No items in this folder</i><P><a href=\"file-storage\">more...</a>"
 	}
@@ -135,8 +131,6 @@ namespace eval fs_portlet {
 	set code [template::adp_compile -string $template]
 
 	set output [template::adp_eval code]
-	ns_log notice "AKS53 got here $output"
-	
 	return $output
 
     }
