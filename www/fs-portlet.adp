@@ -82,14 +82,17 @@
 </if>
 <else>
       <td>
-        <a href="@folders.url@file?file_id=@folders.object_id@">
-          <img border="0" src="@folders.url@graphics/file.gif" width="15" height="13">&nbsp;@folders.name@
+        <a href="@folders.url@/download/@folders.name@?version_id=@folders.live_revision@">
+          <img border="0" src="@folders.url@graphics/file.gif" width="15" height="13">&nbsp;
+          @folders.name@
         </a>
       </td>
       <td><small>File</small></td>
       <td>
-        <a href="@folders.url@/download/@folders.name@?version_id=@folders.live_revision@">
-          <small>\[ download \]</small>
+        <a href="@folders.url@file?file_id=@folders.object_id@">
+          <small>[&nbsp;
+            view details
+          &nbsp;]</small>
         </a>
       </td>
 </else>
