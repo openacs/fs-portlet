@@ -2,28 +2,28 @@
 
   <table border=0 cellpadding=2 cellspacing=2 width=100%>
 
-  <multiple name="items">
+  <multiple name="foo">
   <tr>
   
-  <if @items.type@ eq "Folder">
+  <if @foo.type@ eq "Folder">
 
-      <td><a href=@items.name@?folder_id=@items.file_id@><img border=0 src=@items.name@graphics/folder.gif width=15 height=13> @items.name@</a>
+      <td><a href=@foo.url@?folder_id=@foo.file_id@><img border=0 src=@foo.url@graphics/folder.gif width=15 height=13> @foo.name@</a>
       </td>
-      <td><small>@items.type@</small></td>
+      <td><small>@foo.type@</small></td>
 
-      <if @items.num@ lt 1 or @items.num@ eq 0>
-        <td><small>@items.num@ items</small></td>
+      <if @foo.num@ lt 1 or @foo.num@ eq 0>
+        <td><small>@foo.num@ items</small></td>
       </if>
       <else>
-        <td><small>@items.num@ item</small></td>
+        <td><small>@foo.num@ item</small></td>
 
       </else>
   </if>
   <else>
 
-    <td><a href=@items.name@file?file_id=@items.file_id@><img border=0 src=@items.name@graphics/file.gif width=15 height=13> @items.name@</a></td>
+    <td><a href=@foo.url@file?file_id=@foo.file_id@><img border=0 src=@foo.url@graphics/file.gif width=15 height=13> @foo.name@</a></td>
     <td><small>File</small></td>
-    <td><a href=@items.name@/download/@items.name@?version_id=@items.file_live_rev@><small>\[download\]</small></a></td>
+    <td><a href=@foo.url@/download/@foo.name@?version_id=@foo.file_live_rev@><small>\[download\]</small></a></td>
 
   </else>
 

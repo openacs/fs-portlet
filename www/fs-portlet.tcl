@@ -9,22 +9,26 @@ ad_page_contract {
 }
 
 array set config $cf
-
 set user_id [ad_conn user_id]
-
 set list_of_folder_ids $config(folder_id)
 
+# set up the multirow datasource using the db_multirow proc and 1 id
 set my_folder_id [lindex $list_of_folder_ids 0]
 
-#foreach my_folder_id $list_of_folder_ids {
-   
-    db_multirow -local items select_files_and_folders {} {
-        set package_id [db_string select_package_id {}]
-        
-#        set items(url) \
-#                [dotlrn_community::get_url_from_package_id -package_id $package_id]
-        
+db_multirow -local foo select_files_and_folders {} {
+
+    # we can set array vars for this row
+    set foo(url) [dotlrn_community::get_url_from_package_id \
+        -package_id [db_string select_package_id {}]]       
+}
+
+foreach my_folder_id [lrange $list_of_folder_ids 1 end] {  
+
+    # use the append switch to add rows to the datasource
+    db_multirow -local -append foo select_files_and_folders {} {        
+        set foo(url) [dotlrn_community::get_url_from_package_id \
+            -package_id [db_string select_package_id {}]]        
     }
-#}
+}
 
 ad_return_template 
