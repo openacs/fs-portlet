@@ -68,8 +68,10 @@ namespace eval fs_portlet {
 	# get user_id from the conn at this point
 	set user_id [ad_conn user_id]
 
+	ns_log notice "AKS54 got here"
+
 	# a big-time query from file-storage
-	set query \ "
+	set query "
 	select i.item_id as file_id,
 	r.title as name,
 	i.live_revision,
@@ -103,7 +105,7 @@ namespace eval fs_portlet {
 	set rowcount 0
 
 	db_foreach select_files_and_folders $query {
-	    append data "<tr><td>$name</td><td>$path</td><td>$content_size</td><td><td>type</td>$last_modified</td>"
+	    append data "<tr><td>$name</td><td>$path</td><td>$content_size</td><td>type</td><td>$last_modified</td>"
 	    incr rowcount
 	} 
 

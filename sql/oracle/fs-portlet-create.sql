@@ -33,6 +33,7 @@ begin
 	configured_p => 'f',
 	key => 'community_id',
 	value => ''
+);
 
 
   portal_datasource.set_def_param (
