@@ -62,6 +62,7 @@
 <if @write_p@ true>
       <tr>
         <td colspan="4">
+          <br>
           <nobr>
             <small>
               <a href="@url@file-add?folder_id=@folder_id@">Upload a file</a>
