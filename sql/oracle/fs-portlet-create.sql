@@ -94,6 +94,14 @@ begin
         value => ''
     );
 
+    portal_datasource.set_def_param(
+        datasource_id => ds_id,
+        config_required_p => 't',
+        configured_p => 'f',
+        key => 'contents_url',
+        value => ''
+    );
+
     -- create the implementation
     foo := acs_sc_impl.new(
         'portal_datasource',
