@@ -142,6 +142,12 @@ namespace eval fs_portlet {
 
     }
 
+
+    ad_proc -public edit { 
+    } {
+	return ""
+    }
+
     ad_proc -public remove_self_from_page { 
 	portal_id 
 	community_id 
