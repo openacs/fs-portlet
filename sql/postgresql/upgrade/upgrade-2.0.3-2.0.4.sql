@@ -14,17 +14,17 @@ declare
   row_res record;
 begin
 
-  if :old.label <> :new.label then
+  if old.label <> new.label then
     for row_res in select m.element_id
                 from portal_element_map m,
                 portal_element_parameters p
   	        where p.key = "folder_id"
-                  and p.value = :new.folder_id
+                  and p.value = new.folder_id
                   and m.element_id = p.element_id
                   and m.name = "fs_contents_portlet" loop
   
       update portal_element_map
-      set pretty_name = :new.label
+      set pretty_name = new.label
       where element_id = row_res.element_id;
   
     end loop;
