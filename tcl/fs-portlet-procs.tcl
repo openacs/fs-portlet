@@ -124,7 +124,7 @@ namespace eval fs_portlet {
 	ns_log notice "AKS52 got here $rowcount"
 
 	if {!$rowcount} {
-	    set template "<i>No items in this folder</i>"
+	    set template "<i>No items in this folder</i><P><a href=\"file-storage\">more...</a>"
 	}
 
 	set code [template::adp_compile -string $template]
