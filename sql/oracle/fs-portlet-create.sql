@@ -102,6 +102,7 @@ begin
     foo := acs_sc_impl.new(
         impl_contract_name => 'portal_datasource',
         impl_name => 'fs_portlet',
+        impl_pretty_name => 'FS Portlet',
         impl_owner_name => 'fs_portlet'
     );
 
