@@ -20,6 +20,11 @@ namespace eval fs_portlet {
     return "fs-portlet"
     }
 
+    ad_proc -public get_pretty_name {
+    } {
+	return "File Storage"
+    }
+
     ad_proc -public add_self_to_page { 
 	page_id 
 	community_id
