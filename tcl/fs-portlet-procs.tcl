@@ -82,12 +82,10 @@ namespace eval fs_portlet {
 	set query "
 	select i.item_id as file_id,
 	r.title as name,
-	i.live_revision,
-	content_item.get_path(i.item_id,file_storage.get_root_folder($config(community_id))) as path,
+	i.live_revision file_live_rev,
 	r.mime_type as type,
-	to_char(o.last_modified,'YYYY-MM-DD HH24:MI') as last_modified,
-	r.content_length as content_size,
-	1 as ordering_key
+	1 as ordering_key,
+        0 as num
 	from   cr_items i, cr_revisions r, acs_objects o
 	where  i.item_id       = o.object_id
 	and    i.live_revision = r.revision_id (+)
@@ -97,12 +95,10 @@ namespace eval fs_portlet {
 	UNION
 	select i.item_id as file_id,
 	f.label as name,
-	0,
-	content_item.get_path(f.folder_id) as path,
+        0,
 	'Folder',
-	NULL,
-	0,
-	0
+        0,
+        (select count(*) from cr_items where parent_id = i.item_id) as num
 	from   cr_items i, cr_folders f
 	where  i.item_id   = f.folder_id
 	and    i.parent_id = $config(folder_id)
@@ -115,19 +111,25 @@ namespace eval fs_portlet {
 	if { $config(shaded_p) == "f" } {
 
 	    db_foreach select_files_and_folders $query {
-		append data "<tr><td>$name</td><td>$path</td><td>$content_size</td><td>$type</td><td>$last_modified</td>"
+		if {$type == "Folder"} {
+                append data "<tr><td><a href=./file-storage/?folder_id=$file_id><img border=0 src=./file-storage/graphics/folder.gif>$name</a></td><td>$type</td><td>$num files</td>"
+
+                } else {
+# http://dotlrn.openforce.net:8000/dotlrn/classes/ck1/ck1-asf-asef/file-storage/download/LICENSE?version_id=3952
+                    set type "File"
+                append data "<tr><td><a href=./file-storage/file?file_id=$file_id><img border=0 src=./file-storage/graphics/file.gif>$name</a></td><td>$type</td><td><a href=./file-storage/download/$name?version_id=$file_live_rev>(download)</a></td>"
+
+                }
+#http://dotlrn.openforce.net:8000/dotlrn/classes/ck1/ck1-asf-asef/file-storage/file?file_id=3951
+
+
+
+
 		incr rowcount
 	    } 
 
 	    set template "
-	    <table border=1 cellpadding=2 cellspacing=2>
-	    <tr>
-	    <td bgcolor=#cccccc>Name</td>
-	    <td bgcolor=#cccccc>Action</td>
-	    <td bgcolor=#cccccc>Size (bytes)</td>
-	    <td bgcolor=#cccccc>Type</td>
-	    <td bgcolor=#cccccc>Modified</td>
-	    </tr>
+	    <table border=0 cellpadding=2 cellspacing=2 width=100%>
 	    $data
 	    </table>"
 	    
