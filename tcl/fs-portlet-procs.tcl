@@ -41,7 +41,10 @@ namespace eval fs_portlet {
 
     ad_proc -public get_pretty_name {
     } {
-        return [ad_parameter "pretty_name" [my_package_key]]
+        return [oacs_util::parameter \
+                -key "pretty_name" \
+                -package_key [my_package_key]
+        ]
     }
 
     ad_proc -public link {
