@@ -71,7 +71,7 @@
   <table border="0" cellpadding="2" cellspacing="2" width="100%">
 <multiple name="folders">
     <tr>
-<if @folders.type@ eq "Folder">
+<if @folders.type@ eq "folder">
       <td>
         <img border="0" src="@folders.url@graphics/folder.gif">
       </td>
@@ -95,7 +95,7 @@
 </else>
 </if>
 <else>
-<if @folders.type@ eq "URL">
+<if @folders.type@ eq "url">
       <td>
           <img border="0" src="@folders.url@graphics/file.gif">
       </td>

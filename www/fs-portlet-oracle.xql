@@ -6,7 +6,7 @@
     <fullquery name="select_folders">
         <querytext>
             select file_storage.get_package_id(fs_objects.object_id) as package_id,
-                   decode(fs_objects.type, 'URL', (select site_node.url(site_nodes.node_id)
+                   decode(fs_objects.type, 'url', (select site_node.url(site_nodes.node_id)
                                                    from site_nodes
                                                    where site_nodes.object_id = file_storage.get_package_id(fs_objects.parent_id)),
                                            (select site_node.url(site_nodes.node_id)
@@ -28,7 +28,7 @@
     <fullquery name="select_folder_contents">
         <querytext>
             select file_storage.get_package_id(fs_objects.object_id) as package_id,
-                   decode(fs_objects.type, 'URL', (select site_node.url(site_nodes.node_id)
+                   decode(fs_objects.type, 'url', (select site_node.url(site_nodes.node_id)
                                                    from site_nodes
                                                    where site_nodes.object_id = file_storage.get_package_id(fs_objects.parent_id)),
                                            (select site_node.url(site_nodes.node_id)
