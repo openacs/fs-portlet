@@ -9,11 +9,16 @@
         </a>
       </td>
       <td><small>@folders.type@</small></td>
-<if @folders.num@ gt 1>
-      <td><small>@folders.num@ items</small></td>
+<if @folders.content_size@ eq 0>
+      <td><small>0 items</small></td>
 </if>
 <else>
-      <td><small>@folders.num@ item</small></td>
+  <if @folders.content_size@ gt 1>
+      <td><small>@folders.content_size@ items</small></td>
+  </if>
+  <else>
+      <td><small>@folders.content_size@ item</small></td>
+  </else>
 </else>
 </if>
 <else>
@@ -24,7 +29,7 @@
       </td>
       <td><small>File</small></td>
       <td>
-        <a href="@folders.url@/download/@folders.name@?version_id=@folders.file_live_rev@">
+        <a href="@folders.url@/download/@folders.name@?version_id=@folders.live_revision@">
           <small>\[ download \]</small>
         </a>
       </td>
