@@ -25,6 +25,11 @@ namespace eval fs_portlet {
 	return "Documents"
     }
 
+    ad_proc -public link {
+    } {
+	return "file-storage"
+    }
+
     ad_proc -public add_self_to_page { 
 	page_id 
 	community_id
