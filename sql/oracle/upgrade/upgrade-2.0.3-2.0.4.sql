@@ -31,3 +31,5 @@ end if;
 end fs_cont_port_fldr_rnme_tr;
 /
 show errors
+
+@ ../fs-admin-portlet-create.sql
