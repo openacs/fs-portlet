@@ -19,6 +19,43 @@
 %>
 
 <if @config.shaded_p@ ne "t">
+
+  <table>
+<if @write_p@ eq 1>
+    <tr>
+      <td width="5%"><li></td>
+      <td>
+        <a href="@url@file-add?folder_id=@user_root_folder@">
+          Upload a file to your personal folder
+        </a>
+        &nbsp;&nbsp;|&nbsp;&nbsp;
+        <a href="@url@simple-add?folder_id=@user_root_folder@">
+          Create a URL in your personal folder
+        </a>
+    </tr>
+    <tr>
+      <td><li></td>
+      <td>
+        <a href="@url@folder-create?parent_id=@user_root_folder@">
+          Create a new folder within your personal folder
+        </a>
+      </td>
+    </tr>
+</if>
+<if @admin_p@ eq 1>
+    <tr><td colspan="2"><br></td></tr>
+    <tr>
+      <td><li></td>
+      <td>
+        <a href="/permissions/one?object_id=@user_root_folder@">
+          Modify permissions on your personal folder
+        </a>
+      </td>
+    </tr>
+</if>
+    <tr><td colspan="2"><br></td></tr>
+  </table>
+
   <table border="0" cellpadding="2" cellspacing="2" width="100%">
 <multiple name="folders">
     <tr>
@@ -57,6 +94,7 @@
     </tr>  
 </multiple>
   </table>
+
 </if>
 <else>
   &nbsp;
