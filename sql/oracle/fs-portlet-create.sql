@@ -21,6 +21,7 @@ begin
     data_type        => 'tcl_proc',
     mime_type        => 'text/html',
     name             => 'fs-portlet',
+    link             => 'file-storage',
     description      => 'Displays the given folder_id ',
     content	     => 'fs_portlet::show',
     configurable_p   => 't'
