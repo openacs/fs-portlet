@@ -62,14 +62,16 @@ if {[empty_string_p $contents_url]} {
     set contents_url "${contents_url}?"
 }
 
-set admin_p [permission::permission_p -object_id $folder_id -privilege "admin"]
-set write_p $admin_p
-if {!$write_p} {
-    set write_p [permission::permission_p -object_id $folder_id -privilege "write"]
-}
-set delete_p $admin_p
-if {!$delete_p} {
-    set delete_p [permission::permission_p -object_id $folder_id -privilege "delete"]
+if { !$scoped_p } {
+    set admin_p [permission::permission_p -object_id $folder_id -privilege "admin"]
+    set write_p $admin_p
+    if {!$write_p} {
+        set write_p [permission::permission_p -object_id $folder_id -privilege "write"]
+    }
+    set delete_p $admin_p
+    if {!$delete_p} {
+        set delete_p [permission::permission_p -object_id $folder_id -privilege "delete"]
+    }
 }
 
 set query "select_folders"

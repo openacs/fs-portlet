@@ -29,9 +29,6 @@ ad_page_contract {
     user_id:onevalue
     user_root_folder:onevalue
     user_root_folder_present_p:onevalue
-    write_p:onevalue
-    admin_p:onevalue
-    delete_p:onevalue
     url:onevalue
     folders:multirow
     n_folders:onevalue
@@ -60,21 +57,12 @@ set file_storage_package_id [site_node::get_children \
 set root_folder_id [fs::get_root_folder -package_id $file_storage_package_id]
 
 set folder_id [lindex $list_of_folder_ids 0]
+ns_log Notice "Huh? folder_id: $folder_id root_folder_id: $root_folder_id"
 set scope_fs_url "/packages/file-storage/www/folder-chunk"
 set n_past_days ""
 set url [site_node_object_map::get_url -object_id $folder_id]
 set recurse_p 1
 set contents_url "${url}folder-contents?[export_vars {folder_id recurse_p}]&"
-
-set admin_p [permission::permission_p -object_id $folder_id -privilege "admin"]
-set write_p $admin_p
-if {!$write_p} {
-    set write_p [permission::permission_p -object_id $folder_id -privilege "write"]
-}
-set delete_p $admin_p
-if {!$delete_p} {
-    set delete_p [permission::permission_p -object_id $folder_id -privilege "delete"]
-}
 
 # Enable Notifications
 
