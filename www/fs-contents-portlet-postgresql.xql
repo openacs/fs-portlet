@@ -16,6 +16,7 @@
                                             where site_nodes.object_id = file_storage__get_package_id(fs_objects.object_id))
                    END) as url,
                    fs_objects.object_id,
+                   fs_objects.file_upload_name,
                    fs_objects.name,
                    fs_objects.live_revision,
                    fs_objects.type,

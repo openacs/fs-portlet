@@ -72,11 +72,11 @@ if {!$delete_p} {
     set delete_p [permission::permission_p -object_id $folder_id -privilege "delete"]
 }
 
-set query "select_folder_contents"
-if {!$scoped_p} {
-    set query "select_folders"
+set query "select_folders"
+if {$scoped_p} {
+    set scope_fs_url "/packages/file-storage/www/folder-chunk"
+} else {
+    db_multirow folders $query {}
 }
-
-db_multirow folders $query {}
 
 ad_return_template 

@@ -3,13 +3,10 @@
 <message_catalog package_key="fs-portlet" locale="en_US" charset="ISO-8859-1">
 
   <msg key="view_details">view details</msg>
-  <msg key="view_past_mod_files">View files modified in the last</msg>
   <msg key="byte">byte</msg>
   <msg key="bytes">bytes</msg>
   <msg key="pretty_name">Documents</msg>
   <msg key="create_new_folder">Create a new folder</msg>
-  <msg key="all">All</msg>
-  <msg key="days">days</msg>
   <msg key="items">items</msg>
   <msg key="upload_file">Upload a file</msg>
   <msg key="create_url">Create a URL</msg>
