@@ -149,33 +149,17 @@ namespace eval fs_portlet {
 	  @author arjun@openforce.net
 	  @creation-date Sept 2001
     } {
-	# Find out the element_id that corresponds to this community_id
-	# and folder_id
-	
-	if { [db0or1row get_element_id "
-	select pem.element_id as element_id
-	from portal_element_parameters pep, portal_element_map pem
-	where pem.portal_id = $portal_id and
-	pep.element_id = pem.element_id and
-	pep.key = 'community_id' and
-	pep.value = $community_id and
-	pep.key = 'folder_id' and
-	pep.value = $folder_id
-	"]  } {
-	     
-	    # delete the params
-	    # delete the element from the map
-	    ns_log Notice "AKS54 fs-portlet-procs delete called"
+	# get the element IDs (could be more than one!)
+	set element_ids [portal::get_element_ids_by_ds $portal_id [my_name]]
 
-	 } else {
-	     ad_return_complaint 1 "fs_portlet::remove_self_from_page: Invalid portal_id and/or folder_id and/or community_id given."
-	     ad_script_abort
-	 }
-
-	 # this call removes the PEs params too
-	 set element_id [portal::remove_element {$portal_id $element_id}]
-     }
- }
+	# remove all elements
+	db_transaction {
+	    foreach element_id $element_ids {
+		portal::remove_element $element_id
+	    }
+	}
+    }
+}
 
  
 
