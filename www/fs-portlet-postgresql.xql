@@ -17,6 +17,7 @@
                    END) as url,
                    fs_objects.object_id,
                    fs_objects.name,
+                   fs_objects.file_upload_name,
                    fs_objects.live_revision,
                    fs_objects.type,
                    fs_objects.content_size
@@ -42,6 +43,7 @@
                    END) as url,
                    fs_objects.object_id,
                    fs_objects.name,
+                   fs_objects.file_upload_name,
                    fs_objects.live_revision,
                    fs_objects.type,
                    fs_objects.content_size

@@ -34,44 +34,5 @@
         </td>
       </tr>
 </if>
-
-<multiple name="folders">
-
-      <tr>
-
-<if @folders.type@ eq "folder">
-        <td><img border="0" src="@folders.url@graphics/folder.gif"></td>
-        <td><a href="@folders.url@?folder_id=@folders.object_id@">@folders.name@</a></td>
-        <td><small>@folders.type@</small></td>
-<if @folders.content_size@ eq 0>
-        <td><small>0 items</small></td>
-</if>
-<else>
-<if @folders.content_size@ gt 1>
-        <td><small>@folders.content_size@ items</small></td>
-</if>
-<else>
-        <td><small>@folders.content_size@ item</small></td>
-</else>
-</else>
-</if>
-<else>
-<if @folders.type@ eq "url">
-        <td><img border="0" src="@folders.url@graphics/file.gif"></td>
-        <td><a href="@folders.url@url-goto?url_id=@folders.object_id@">@folders.name@</a></td>
-        <td><small>@folders.type@</small></td>
-        <td>&nbsp;</td>
-</if>
-<else>
-        <td><img border="0" src="@folders.url@graphics/file.gif"></td>
-        <td><a href="@folders.url@download/@folders.name@?version_id=@folders.live_revision@">@folders.name@</a></td>
-        <td><small>@folders.type@</small></td>
-        <td><small>@folders.content_size@ byte<if @folders.content_size ne 1>s</if></small></td>
-</else>
-</else>
-
-      </tr>
-
-</multiple>
-
-    </table>
+</table>
+<include src=@scope_fs_url@ folder_id=@folder_id@ viewing_user_id=@user_id@ n_past_days=@n_past_days@ fs_url="@url@">
