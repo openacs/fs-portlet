@@ -76,7 +76,10 @@ set query "select_folders"
 if {$scoped_p} {
     set scope_fs_url "/packages/file-storage/www/folder-chunk"
 } else {
-    db_multirow folders $query {}
+    db_multirow folders $query {
+        # The name of the folder may contain message keys that need to be localized on the fly
+        set name [lang::util::localize $name]
+    }
 }
 
 ad_return_template 
