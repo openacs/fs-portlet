@@ -52,6 +52,14 @@ if {![empty_string_p $user_root_folder] && [lsearch -exact $list_of_folder_ids $
 }
 
 set url [portal::mapping::get_url -object_id $folder_id]
+set contents_url [lindex $config(contents_url) 0]
+
+if {[empty_string_p $contents_url]} {
+    set recurse_p 1
+    set contents_url "${url}folder-contents?[export_vars {folder_id recurse_p}]&"
+} else {
+    set contents_url "${contents_url}?"
+}
 
 set write_p [permission::permission_p -object_id $folder_id -privilege "write"]
 set admin_p [permission::permission_p -object_id $folder_id -privilege "admin"]
