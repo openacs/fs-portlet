@@ -52,11 +52,14 @@ namespace eval fs_portlet {
 	@author arjun@openforce.net
 	@creation-date Sept 2001
     } {
+        set extra_params [list "package_id" $instance_id]
+
         return [portal::add_element_or_append_id -portal_id $portal_id \
                 -page_id $page_id \
                 -portlet_name [my_name] \
                 -value_id $folder_id \
-                -key folder_id]
+                -key folder_id \
+                -extra_params $extra_params]
     }
 
     ad_proc -public remove_self_from_page { 
@@ -70,11 +73,14 @@ namespace eval fs_portlet {
 	  @author arjun@openforce.net
 	  @creation-date Sept 2001
     } {
+        set extra_params [list "package_id" $instance_id]
+
         portal::remove_element_or_remove_id \
             -portal_id $portal_id \
             -portlet_name [my_name] \
             -value_id $folder_id \
-            -key "folder_id"
+            -key "folder_id" \
+            -extra_params $extra_params
     }
 
     ad_proc -public make_self_available { 
