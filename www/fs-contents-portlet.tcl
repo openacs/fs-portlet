@@ -51,10 +51,13 @@ set folder_id [lindex $list_of_folder_ids 0]
 set url [portal::mapping::get_url -object_id $folder_id]
 set recurse_p 1
 set contents_url "${url}folder-contents?[export_vars {folder_id recurse_p}]&"
-set write_p [permission::permission_p -object_id $folder_id -privilege "write"]
-set admin_p [permission::permission_p -object_id $folder_id -privilege "admin"]
-set delete_p $admin_p
 
+set admin_p [permission::permission_p -object_id $folder_id -privilege "admin"]
+set write_p $admin_p
+if {!$write_p} {
+    set write_p [permission::permission_p -object_id $folder_id -privilege "write"]
+}
+set delete_p $admin_p
 if {!$delete_p} {
     set delete_p [permission::permission_p -object_id $folder_id -privilege "delete"]
 }
