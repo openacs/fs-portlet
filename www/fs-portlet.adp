@@ -59,7 +59,7 @@
        <if @folders.type@ eq "folder">
           <td>
           <a href="@folders.url@?folder_id=@folders.object_id@">
-	  <img border="0" src="/graphics/folder.gif" height="14" width="14">
+	  <img border="0" src="@folders.url@/graphics/folder.gif" height="14" width="14">
  	  </a>
           </td>
           <td>
@@ -76,7 +76,6 @@
             <else>
                 <td><small>@folders.content_size@ item</small></td>
             </else>
-          <td>&nbsp;</td>
           </else>
         </if>
         <else>
