@@ -113,8 +113,8 @@ begin
     foo := acs_sc_impl.new_alias(
         'portal_datasource',
         'fs_portlet',
-        'MyName',
-        'fs_portlet::my_name',
+        'GetMyName',
+        'fs_portlet::get_my_name',
         'TCL'
     );
 
@@ -163,22 +163,6 @@ begin
         'fs_portlet',
         'RemoveSelfFromPage',
         'fs_portlet::remove_self_from_page',
-        'TCL'
-    );
-
-    foo := acs_sc_impl.new_alias(
-        'portal_datasource',
-        'fs_portlet',
-        'MakeSelfAvailable',
-        'fs_portlet::make_self_available',
-        'TCL'
-    );
-
-    foo := acs_sc_impl.new_alias(
-        'portal_datasource',
-        'fs_portlet',
-        'MakeSelfUnavailable',
-        'fs_portlet::make_self_unavailable',
         'TCL'
     );
 
