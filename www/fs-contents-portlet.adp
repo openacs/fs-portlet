@@ -18,7 +18,6 @@
 
 %>
 
-<if @config.shaded_p@ false>
   <if @folders:rowcount@ eq 0>
     <small>Folder is empty</small>
   </if>
@@ -81,8 +80,4 @@
     </table>
   </if>
 
-</else>
-</if>
-<else>
-  &nbsp;
 </else>
