@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<message_catalog package_key="fs-portlet" package_version="0.1a" locale="el_GR" charset="utf-8">
-
-  <msg key="create_new_folder">Δημιουργία νέου φακέλου</msg>
-  <msg key="items">στοιχεία</msg>
-  <msg key="pretty_name">Έγγραφα</msg>
-</message_catalog>
