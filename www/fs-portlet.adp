@@ -26,18 +26,18 @@
       <td width="5%"><li></td>
       <td>
         <a href="@url@file-add?folder_id=@user_root_folder@">
-          Upload a file to your personal folder
+          Upload a file to my personal folder
         </a>
         &nbsp;&nbsp;|&nbsp;&nbsp;
         <a href="@url@simple-add?folder_id=@user_root_folder@">
-          Create a URL in your personal folder
+          Create a URL in my personal folder
         </a>
     </tr>
     <tr>
       <td><li></td>
       <td>
         <a href="@url@folder-create?parent_id=@user_root_folder@">
-          Create a new folder within your personal folder
+          Create a new folder within my personal folder
         </a>
       </td>
     </tr>
