@@ -22,6 +22,8 @@
 -- @version $Id$
 --
 
+@@ fs-contents-create.sql
+
 declare
     ds_id portal_datasources.datasource_id%TYPE;
     foo integer;
