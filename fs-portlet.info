@@ -17,7 +17,7 @@
 
         <provides url="fs-portlet" version="0.1a"/>
         <requires url="new-portal" version="0.1a"/>
-        <requires url="file-storage" version="4.1"/>
+        <!--requires url="file-storage" version="4.1" -->
 
         <files>
             <file type="package_spec" path="fs-portlet.info"/>
