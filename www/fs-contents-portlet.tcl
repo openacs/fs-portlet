@@ -57,7 +57,6 @@ set file_storage_package_id [site_node::get_children \
 set root_folder_id [fs::get_root_folder -package_id $file_storage_package_id]
 
 set folder_id [lindex $list_of_folder_ids 0]
-ns_log Notice "Huh? folder_id: $folder_id root_folder_id: $root_folder_id"
 set scope_fs_url "/packages/file-storage/www/folder-chunk"
 set n_past_days ""
 set url [site_node_object_map::get_url -object_id $folder_id]
@@ -73,5 +72,11 @@ set notification_chunk [notification::display::request_widget \
     -pretty_name $folder_name \
     -url [ad_conn url]?folder_id=$folder_id \
     ]
+
+set use_webdav_p  [ad_parameter "UseWebDavP"]
+
+if { $use_webdav_p == 1} { 
+    set webdav_url [fs::webdav_url -item_id $folder_id]
+}
 
 ad_return_template 

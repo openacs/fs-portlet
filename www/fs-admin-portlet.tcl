@@ -37,3 +37,6 @@ set return_url [ns_conn url]
 set user_id [ad_conn user_id]
 
 ad_return_template
+
+set package_id [site_node_apm_integration::get_child_package_id -package_key "file-storage"]
+set fs_url "/shared/parameters?[export_url_vars package_id return_url]"
