@@ -139,10 +139,15 @@ namespace eval fs_portlet {
                 db_foreach select_files_and_folders $query {
                                         
                     if {$type == "Folder"} {
-                        append data "<tr><td><a href=${url}?folder_id=$file_id><img border=0 src=${url}graphics/folder.gif width=15 height=13> $name</a></td><td>$type</td><td>$num files</td>"
+                        append data "<tr><td><a href=${url}?folder_id=$file_id><img border=0 src=${url}graphics/folder.gif width=15 height=13> $name</a></td><td>$type</td>"
+                        if { $num > 1 } {
+                            append data "<td>$num items</td>"
+                        } else {
+                            append data "<td>$num item</td>"
+                        }
                     } else {
                         set type "File"
-                        append data "<tr><td><a href=${url}file?file_id=$file_id><img border=0 src=${url}graphics/file.gif width=15 height=13> $name?version_id=$file_live_rev>(download)</a></td>"
+                        append data "<tr><td><a href=${url}file?file_id=$file_id><img border=0 src=${url}graphics/file.gif width=15 height=13>$name</a></td><td><a href=${url}/download/$name?version_id=$file_live_rev><small>\[download\]</small></a></td>"
                     }
                     append template "\n$data\n"
                 }
