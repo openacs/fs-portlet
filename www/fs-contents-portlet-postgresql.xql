@@ -8,12 +8,12 @@
             select file_storage__get_package_id(fs_objects.object_id) as package_id,
                    (CASE 
                        WHEN fs_objects.type = 'url'
-                       THEN (select site_node.url(site_nodes.node_id)
+                       THEN (select site_node__url(site_nodes.node_id)
                                                    from site_nodes
-                                                   where site_nodes.object_id = file_storage.get_package_id(fs_objects.parent_id))
-                       ELSE (select site_node.url(site_nodes.node_id)
+                                                   where site_nodes.object_id = file_storage__get_package_id(fs_objects.parent_id))
+                       ELSE (select site_node__url(site_nodes.node_id)
                                             from site_nodes
-                                            where site_nodes.object_id = file_storage.get_package_id(fs_objects.object_id))
+                                            where site_nodes.object_id = file_storage__get_package_id(fs_objects.object_id))
                    END) as url,
                    fs_objects.object_id,
                    fs_objects.name,
