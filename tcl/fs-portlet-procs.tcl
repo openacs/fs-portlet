@@ -55,10 +55,10 @@ namespace eval fs_portlet {
 
     ad_proc -public add_self_to_page {
         {-page_id ""}
+        {-extra_params ""}
         portal_id
         instance_id
         folder_id
-        {-extra_params ""}
     } {
         Adds a fs PE to the given page. If there's already and fs pe,
         it appends the values to the pe's params.
