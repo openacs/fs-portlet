@@ -23,7 +23,7 @@ ad_page_contract {
     @author Arjun Sanyal (arjun@openforce.net)
     @cvs_id $Id$
 } -query {
-    {n_past_days "-1"}
+    {n_past_days "99999"}
 } -properties {
     user_id:onevalue
     user_root_folder:onevalue
