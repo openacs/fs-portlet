@@ -10,4 +10,5 @@
   <msg key="pretty_name">Documents</msg>
   <msg key="upload_file">Upload a file</msg>
   <msg key="view_details">view details</msg>
+  <msg key="edit_upload_size_limit">Edit Upload Size Limit</msg>
 </message_catalog>
