@@ -63,7 +63,7 @@
           <td>
           <a href="@folders.url@?folder_id=@folders.object_id@">@folders.name@</a>
           </td>
-          <td><small>@folders.type@</small></td>
+          <td><small>#file-storage.folder_type_pretty_name#</small></td>
           <if @folders.content_size@ eq 0>
             <td><small>0 #fs-portlet.items#</small></td>
           </if>
