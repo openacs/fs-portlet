@@ -64,4 +64,14 @@ if {!$delete_p} {
     set delete_p [permission::permission_p -object_id $folder_id -privilege "delete"]
 }
 
+# Enable Notifications
+
+set folder_name [fs_get_folder_name $folder_id]
+set notification_chunk [notification::display::request_widget \
+    -type fs_fs_notif \
+    -object_id $folder_id \
+    -pretty_name $folder_name \
+    -url [ad_conn url]?folder_id=$folder_id \
+    ]
+
 ad_return_template 
