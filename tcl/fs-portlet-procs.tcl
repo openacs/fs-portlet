@@ -139,13 +139,11 @@ namespace eval fs_portlet {
     ad_proc -public remove_self_from_page { 
 	portal_id 
 	community_id 
-	folder_id 
     } {
 	  Removes a fs PE from the given page 
     
 	  @param page_id The page to remove self from
 	  @param community_id
-	  @param folder_id
 	  @author arjun@openforce.net
 	  @creation-date Sept 2001
     } {
