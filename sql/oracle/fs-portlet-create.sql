@@ -26,13 +26,12 @@ declare
     ds_id portal_datasources.datasource_id%TYPE;
     foo integer;
 begin
+
     ds_id := portal_datasource.new(
         name => 'fs_portlet',
         description => 'Displays the given folder_id'
     );
 
-    --  the standard 4 params
-    -- shadeable_p
     portal_datasource.set_def_param(
         datasource_id => ds_id,
         config_required_p => 't',
@@ -41,7 +40,6 @@ begin
         value => 't'
     );
 
-    -- hideable_p
     portal_datasource.set_def_param(
         datasource_id => ds_id,
         config_required_p => 't',
@@ -50,7 +48,6 @@ begin
         value => 't'
     );
 
-    -- user_editable_p
     portal_datasource.set_def_param(
         datasource_id => ds_id,
         config_required_p => 't',
@@ -59,7 +56,6 @@ begin
         value => 'f'
     );
 
-    -- shaded_p
     portal_datasource.set_def_param(
         datasource_id => ds_id,
         config_required_p => 't',
@@ -68,7 +64,6 @@ begin
         value => 'f'
     );
 
-    -- link_hideable_p
     portal_datasource.set_def_param(
         datasource_id => ds_id,
         config_required_p => 't',
@@ -81,11 +76,10 @@ begin
         datasource_id => ds_id,
         config_required_p => 't',
         configured_p => 'f',
-        key => 'style',
-        value => 'tree'
+        key => 'scoped_p',
+        value => 't'
     );
 
-    -- fs-specific params
     portal_datasource.set_def_param(
         datasource_id => ds_id,
         config_required_p => 't',
@@ -171,6 +165,7 @@ begin
         contract_name => 'portal_datasource',
         impl_name => 'fs_portlet'
     );
+
 end;
 /
 show errors

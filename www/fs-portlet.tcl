@@ -39,7 +39,7 @@ array set config $cf
 set user_id [ad_conn user_id]
 set list_of_folder_ids $config(folder_id)
 set n_folders [llength $list_of_folder_ids]
-set style $config(style)
+set scoped_p [ad_decode $config(scoped_p) t 1 0]
 
 set user_root_folder [dotlrn_fs::get_user_root_folder -user_id $user_id]
 set user_root_folder_present_p 0
@@ -70,7 +70,7 @@ if {!$delete_p} {
 }
 
 set query "select_folder_contents"
-if {![string equal $style "tree"]} {
+if {!$scoped_p} {
     set query "select_folders"
 }
 
