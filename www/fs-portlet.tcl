@@ -100,12 +100,13 @@ set notification_chunk [notification::display::request_widget \
     -url [ad_conn url]?folder_id=$folder_id \
     ]
 
-set use_webdav_p  [parameter::get -package_id $file_storage_package_id -parameter "UseWebDavP"]
-
-if { $use_webdav_p == 1} { 
-    set webdav_url [fs::webdav_url -item_id $folder_id -package_id $file_storage_package_id]
+if [exists_and_not_null file_storage_package_id] {
+    set use_webdav_p  [parameter::get -package_id $file_storage_package_id -parameter "UseWebDavP"]
+    
+    if { $use_webdav_p == 1} { 
+	set webdav_url [fs::webdav_url -item_id $folder_id -package_id $file_storage_package_id]
+    }
 }
-
 
 
 ad_return_template 
