@@ -42,6 +42,26 @@
         </a>
       </td>
     </tr>
+    <tr>
+      <td><li></td>
+      <td>
+        View files modified in the last
+        <a href="@url@folder-contents?foder_id=@folder_id@&recurse_p=1&n_past_days=999999">All</a>
+        |
+        <a href="@url@folder-contents?foder_id=@folder_id@&recurse_p=1&n_past_days=1">1</a>
+        |
+        <a href="@url@folder-contents?foder_id=@folder_id@&recurse_p=1&n_past_days=2">2</a>
+        |
+        <a href="@url@folder-contents?foder_id=@folder_id@&recurse_p=1&n_past_days=3">3</a>
+        |
+        <a href="@url@folder-contents?foder_id=@folder_id@&recurse_p=1&n_past_days=7">7</a>
+        |
+        <a href="@url@folder-contents?foder_id=@folder_id@&recurse_p=1&n_past_days=14">14</a>
+        |
+        <a href="@url@folder-contents?foder_id=@folder_id@&recurse_p=1&n_past_days=30">30</a>
+        days.
+      </td>
+    </tr>
   </table>
 
   <br>
