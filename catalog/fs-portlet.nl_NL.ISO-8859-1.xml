@@ -3,11 +3,11 @@
 
   <msg key="byte">byte</msg>
   <msg key="bytes">bytes</msg>
-  <msg key="create_new_folder">Aanmaken Map</msg>
-  <msg key="create_url">Aanmaken URL</msg>
+  <msg key="create_new_folder">Map aanmaken</msg>
+  <msg key="create_url">URL aanmaken</msg>
   <msg key="item">item</msg>
   <msg key="items">documenten</msg>
   <msg key="pretty_name">Documenten</msg>
-  <msg key="upload_file">Aanbieden Bestand</msg>
+  <msg key="upload_file">Bestand aanbieden</msg>
   <msg key="view_details">bekijk details</msg>
 </message_catalog>
