@@ -22,13 +22,15 @@ namespace eval fs_portlet {
 
     ad_proc -public add_self_to_page { 
 	page_id 
+	community_id
 	folder_id 
     } {
-	Adds a fs PE to the given page with the folder_id being
-	opaque data in the portal configuration.
+	Adds a fs PE to the given page with the community_id and 
+	folder_id being opaque data in the portal configuration.
     
 	@return element_id The new element's id
 	@param page_id The page to add self to
+	@param community_id The community with the folder
 	@param folder_id The folder to show
 	@author arjun@openforce.net
 	@creation-date Sept 2001
@@ -36,10 +38,12 @@ namespace eval fs_portlet {
 	# Tell portal to add this element to the page
 	set element_id [portal::add_element $page_id [my_name]]
 	
+	# The default param "community_id" must be configured
+	set key "community_id"
+	portal::set_element_param $element_id $key $community_id
+
 	# The default param "folder_id" must be configured
 	set key "folder_id"
-	set value [portal::get_element_param $element_id $key]
-
 	portal::set_element_param $element_id $key $folder_id
 
 	return $element_id
