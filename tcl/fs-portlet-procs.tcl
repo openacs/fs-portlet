@@ -31,7 +31,7 @@ namespace eval fs_portlet {
     }
 
     ad_proc -public add_self_to_page { 
-	page_id 
+	portal_id 
 	community_id
 	folder_id 
     } {
@@ -39,14 +39,14 @@ namespace eval fs_portlet {
 	folder_id being opaque data in the portal configuration.
     
 	@return element_id The new element's id
-	@param page_id The page to add self to
+	@param portal_id The page to add self to
 	@param community_id The community with the folder
 	@param folder_id The folder to show
 	@author arjun@openforce.net
 	@creation-date Sept 2001
     } {
 	# Tell portal to add this element to the page
-	set element_id [portal::add_element $page_id [my_name]]
+	set element_id [portal::add_element $portal_id [my_name]]
 	
 	# The default param "community_id" must be configured
 	set key "community_id"
@@ -159,7 +159,7 @@ namespace eval fs_portlet {
     } {
 	  Removes a fs PE from the given page 
     
-	  @param page_id The page to remove self from
+	  @param portal_id The page to remove self from
 	  @param community_id
 	  @author arjun@openforce.net
 	  @creation-date Sept 2001
@@ -176,29 +176,29 @@ namespace eval fs_portlet {
     }
 
     ad_proc -public make_self_available { 
- 	page_id 
+ 	portal_id 
     } {
  	Wrapper for the portal:: proc
  	
- 	@param page_id
+ 	@param portal_id
  	@author arjun@openforce.net
  	@creation-date Nov 2001
     } {
  	portal::make_datasource_available \
- 		$page_id [portal::get_datasource_id [my_name]]
+ 		$portal_id [portal::get_datasource_id [my_name]]
     }
 
     ad_proc -public make_self_unavailable { 
-	page_id 
+	portal_id 
     } {
 	Wrapper for the portal:: proc
 	
-	@param page_id
+	@param portal_id
 	@author arjun@openforce.net
 	@creation-date Nov 2001
     } {
 	portal::make_datasource_unavailable \
-		$page_id [portal::get_datasource_id [my_name]]
+		$portal_id [portal::get_datasource_id [my_name]]
     }
 }
 
