@@ -140,7 +140,7 @@ namespace eval fs_portlet {
                                         
                     if {$type == "Folder"} {
                         append data "<tr><td><a href=${url}?folder_id=$file_id><img border=0 src=${url}graphics/folder.gif width=15 height=13> $name</a></td><td>$type</td>"
-                        if { $num > 1 } {
+                        if { $num > 1 || $num == 0 } {
                             append data "<td>$num items</td>"
                         } else {
                             append data "<td>$num item</td>"
