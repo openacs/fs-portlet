@@ -22,7 +22,7 @@ namespace eval fs_portlet {
 
     ad_proc -public get_pretty_name {
     } {
-	return "File Storage"
+	return "Documents"
     }
 
     ad_proc -public add_self_to_page { 
