@@ -15,43 +15,38 @@
 --
 
 --
--- Creates the file-storage portlet
+-- Create File Storage Admin Portlet
 --
--- @author Arjun Sanyal(arjun@openforce.net)
--- @creation-date 2001-30-09
+-- @author Tracy Adams (teadams@mit.edu)
+-- @creation-date 2004-07-07
 -- @version $Id$
---
-
-@@ fs-contents-portlet-create.sql
-@@ fs-admin-portlet-create.sql
 
 declare
     ds_id portal_datasources.datasource_id%TYPE;
-    foo integer;
 begin
 
     ds_id := portal_datasource.new(
-        name => 'fs_portlet',
-        description => 'Displays the given folder_id'
+        name => 'fs_admin_portlet',
+        description => 'Displays a File Storage Admin portlet'
     );
 
-    portal_datasource.set_def_param(
+    portal_datasource.set_def_param (
         datasource_id => ds_id,
         config_required_p => 't',
         configured_p => 't',
         key => 'shadeable_p',
-        value => 't'
+        value => 'f'
     );
 
-    portal_datasource.set_def_param(
+    portal_datasource.set_def_param (
         datasource_id => ds_id,
         config_required_p => 't',
         configured_p => 't',
         key => 'hideable_p',
-        value => 't'
+        value => 'f'
     );
 
-    portal_datasource.set_def_param(
+    portal_datasource.set_def_param (
         datasource_id => ds_id,
         config_required_p => 't',
         configured_p => 't',
@@ -59,7 +54,7 @@ begin
         value => 'f'
     );
 
-    portal_datasource.set_def_param(
+    portal_datasource.set_def_param (
         datasource_id => ds_id,
         config_required_p => 't',
         configured_p => 't',
@@ -67,7 +62,7 @@ begin
         value => 'f'
     );
 
-    portal_datasource.set_def_param(
+    portal_datasource.set_def_param (
         datasource_id => ds_id,
         config_required_p => 't',
         configured_p => 't',
@@ -75,101 +70,94 @@ begin
         value => 't'
     );
 
-    portal_datasource.set_def_param(
+    portal_datasource.set_def_param (
         datasource_id => ds_id,
         config_required_p => 't',
         configured_p => 'f',
-        key => 'scoped_p',
-        value => 't'
-    );
-
-    portal_datasource.set_def_param(
-        datasource_id => ds_id,
-        config_required_p => 't',
-        configured_p => 'f',
-        key => 'folder_id',
+        key => 'package_id',
         value => ''
     );
 
-    portal_datasource.set_def_param(
-        datasource_id => ds_id,
-        config_required_p => 't',
-        configured_p => 'f',
-        key => 'contents_url',
-        value => ''
-    );
+end;
+/
+show errors
+
+declare
+    foo integer;
+begin
 
     -- create the implementation
-    foo := acs_sc_impl.new(
+    foo := acs_sc_impl.new (
         impl_contract_name => 'portal_datasource',
-        impl_name => 'fs_portlet',
-        impl_pretty_name => 'FS Portlet',
-        impl_owner_name => 'fs_portlet'
+        impl_name => 'fs_admin_portlet',
+        impl_pretty_name => 'File Storage Admin Portlet',
+        impl_owner_name => 'fs_admin_portlet'
     );
 
     -- add all the hooks
     foo := acs_sc_impl.new_alias(
         'portal_datasource',
-        'fs_portlet',
+        'fs_admin_portlet',
         'GetMyName',
-        'fs_portlet::get_my_name',
+        'fs_admin_portlet::get_my_name',
         'TCL'
     );
 
     foo := acs_sc_impl.new_alias(
         'portal_datasource',
-        'fs_portlet',
+        'fs_admin_portlet',
         'GetPrettyName',
-        'fs_portlet::get_pretty_name',
+        'fs_admin_portlet::get_pretty_name',
         'TCL'
     );
 
     foo := acs_sc_impl.new_alias(
         'portal_datasource',
-        'fs_portlet',
+        'fs_admin_portlet',
         'Link',
-        'fs_portlet::link',
+        'fs_admin_portlet::link',
         'TCL'
     );
 
     foo := acs_sc_impl.new_alias(
         'portal_datasource',
-        'fs_portlet',
+        'fs_admin_portlet',
         'AddSelfToPage',
-        'fs_portlet::add_self_to_page',
+        'fs_admin_portlet::add_self_to_page',
         'TCL'
     );
 
     foo := acs_sc_impl.new_alias(
         'portal_datasource',
-        'fs_portlet',
+        'fs_admin_portlet',
         'Show',
-        'fs_portlet::show',
+        'fs_admin_portlet::show',
         'TCL'
     );
 
     foo := acs_sc_impl.new_alias(
         'portal_datasource',
-        'fs_portlet',
+        'fs_admin_portlet',
         'Edit',
-        'fs_portlet::edit',
+        'fs_admin_portlet::edit',
         'TCL'
     );
 
     foo := acs_sc_impl.new_alias(
         'portal_datasource',
-        'fs_portlet',
+        'fs_admin_portlet',
         'RemoveSelfFromPage',
-        'fs_portlet::remove_self_from_page',
+        'fs_admin_portlet::remove_self_from_page',
         'TCL'
     );
 
     -- Add the binding
     acs_sc_binding.new(
         contract_name => 'portal_datasource',
-        impl_name => 'fs_portlet'
+        impl_name => 'fs_admin_portlet'
     );
 
 end;
 /
 show errors
+

@@ -17,15 +17,9 @@
 --
 -- Creates the file-storage portlet
 --
--- @author Arjun Sanyal(arjun@openforce.net)
--- @creation-date 2001-30-09
+-- @creation-date 2004-19-07
 -- @version $Id$
---
--- @author dan chak (chak@openforce.net)
--- ported to postgres 2002-07-09
-
-\i fs-contents-portlet-create.sql
-\i fs-admin-portlet-create.sql
+-- 
 
 create function inline_0()
 returns integer as '
@@ -35,7 +29,7 @@ declare
  begin
 
      ds_id := portal_datasource__new(
-	   ''fs_portlet'',
+	   ''fs_admin_portlet'',
 	   ''Displays the given folder_id''
     );
 
@@ -106,71 +100,71 @@ declare
     -- create the implementation
     foo := acs_sc_impl__new(
         ''portal_datasource'',
-        ''fs_portlet'',
-        ''fs_portlet''
+        ''fs_admin_portlet'',
+        ''fs_admin_portlet''
     );
 
     -- add all the hooks
     foo := acs_sc_impl_alias__new(
         ''portal_datasource'',
-        ''fs_portlet'',
+        ''fs_admin_portlet'',
         ''GetMyName'',
-        ''fs_portlet::get_my_name'',
+        ''fs_admin_portlet::get_my_name'',
         ''TCL''
     );
 
     foo := acs_sc_impl_alias__new(
         ''portal_datasource'',
-        ''fs_portlet'',
+        ''fs_admin_portlet'',
         ''GetPrettyName'',
-        ''fs_portlet::get_pretty_name'',
+        ''fs_admin_portlet::get_pretty_name'',
         ''TCL''
     );
 
     foo := acs_sc_impl_alias__new(
         ''portal_datasource'',
-        ''fs_portlet'',
+        ''fs_admin_portlet'',
         ''Link'',
-        ''fs_portlet::link'',
+        ''fs_admin_portlet::link'',
         ''TCL''
     );
 
     foo := acs_sc_impl_alias__new(
         ''portal_datasource'',
-        ''fs_portlet'',
+        ''fs_admin_portlet'',
         ''AddSelfToPage'',
-        ''fs_portlet::add_self_to_page'',
+        ''fs_admin_portlet::add_self_to_page'',
         ''TCL''
     );
 
     foo := acs_sc_impl_alias__new(
         ''portal_datasource'',
-        ''fs_portlet'',
+        ''fs_admin_portlet'',
         ''Show'',
-        ''fs_portlet::show'',
+        ''fs_admin_portlet::show'',
         ''TCL''
     );
 
     foo := acs_sc_impl_alias__new(
         ''portal_datasource'',
-        ''fs_portlet'',
+        ''fs_admin_portlet'',
         ''Edit'',
-        ''fs_portlet::edit'',
+        ''fs_admin_portlet::edit'',
         ''TCL''
     );
 
     foo := acs_sc_impl_alias__new(
         ''portal_datasource'',
-        ''fs_portlet'',
+        ''fs_admin_portlet'',
         ''RemoveSelfFromPage'',
-        ''fs_portlet::remove_self_from_page'',
+        ''fs_admin_portlet::remove_self_from_page'',
         ''TCL''
     );
 
     -- Add the binding
     perform acs_sc_binding__new(
           ''portal_datasource'',
-          ''fs_portlet''
+          ''fs_admin_portlet''
     );
 
 	return 0;

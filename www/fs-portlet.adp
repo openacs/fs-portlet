@@ -116,5 +116,6 @@
   &nbsp;
 </else>
 
+<p>@notification_chunk;noquote@</p>
 
 
