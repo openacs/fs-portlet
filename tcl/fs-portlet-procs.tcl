@@ -53,29 +53,30 @@ namespace eval fs_portlet {
     }
 
     ad_proc -public add_self_to_page {
-        {-page_id ""}
+        {-portal_id:required}
+        {-page_name ""}
+        {-package_id:required}
+        {-folder_id:required}
         {-extra_params ""}
         {-force_region ""}
-        portal_id
-        instance_id
-        folder_id
     } {
         Adds a fs PE to the given page. If there's already and fs pe,
         it appends the values to the pe's params.
 
         @param portal_id The page to add self to
         @param folder_id The folder to show
+
         @return element_id The new element's id
     } {
         if {[empty_string_p $extra_params]} {
             set extra_params [list]
         }
 
-        lappend extra_params [list "package_id" $instance_id]
+        lappend extra_params [list package_id $package_id]
 
         return [portal::add_element_or_append_id \
             -portal_id $portal_id \
-            -page_id $page_id \
+            -page_name $page_name \
             -pretty_name [get_pretty_name] \
             -portlet_name [get_my_name] \
 	    -force_region $force_region \
@@ -87,12 +88,12 @@ namespace eval fs_portlet {
 
     ad_proc -public remove_self_from_page {
         portal_id
-        instance_id
+        package_id
         folder_id
     } {
           Removes a fs PE from the given page
     } {
-        set extra_params [list "package_id" $instance_id]
+        set extra_params [list package_id $package_id]
 
         portal::remove_element_or_remove_id \
             -portal_id $portal_id \
@@ -107,9 +108,8 @@ namespace eval fs_portlet {
     } {
     } {
         portal::show_proc_helper \
-                -package_key [my_package_key] \
-                -config_list $cf
+            -package_key [my_package_key] \
+            -config_list $cf
     }
-
 
 }
