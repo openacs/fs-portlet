@@ -8,6 +8,6 @@
   <msg key="item">plik</msg>
   <msg key="items">pliki</msg>
   <msg key="pretty_name">Dokumenty</msg>
-  <msg key="upload_file">Wgraj plik</msg>
+  <msg key="upload_file">Wyślij plik</msg>
   <msg key="view_details">pokaż szczegóły</msg>
 </message_catalog>
