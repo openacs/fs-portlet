@@ -30,7 +30,7 @@
             |
             <a href="@url@file-add?folder_id=@folder_id@">Upload a file</a>
             |
-            <a href="@url@simple-add?folder_id=@folder_id@">Create a URL</a>
+            <a href="@url@simple-add?folder_id=@folder_id@">Add a URL</a>
           ]</small>
         </nobr>
       </td>
