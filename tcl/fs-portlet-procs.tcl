@@ -107,27 +107,34 @@ namespace eval fs_portlet {
 	set data ""
 	set rowcount 0
 
-	db_foreach select_files_and_folders $query {
-	    append data "<tr><td>$name</td><td>$path</td><td>$content_size</td><td>$type</td><td>$last_modified</td>"
-	    incr rowcount
-	} 
+	if { $config(shaded_p) == "f" } {
 
-	set template "
-	<table border=1 cellpadding=2 cellspacing=2>
-	<tr>
-	<td bgcolor=#cccccc>Name</td>
-	<td bgcolor=#cccccc>Action</td>
-	<td bgcolor=#cccccc>Size (bytes)</td>
-	<td bgcolor=#cccccc>Type</td>
-	<td bgcolor=#cccccc>Modified</td>
-	</tr>
-	$data
-	</table>"
+	    db_foreach select_files_and_folders $query {
+		append data "<tr><td>$name</td><td>$path</td><td>$content_size</td><td>$type</td><td>$last_modified</td>"
+		incr rowcount
+	    } 
 
-	if {!$rowcount} {
-	    set template "<i>No items in this folder</i><P><a href=\"file-storage\">more...</a>"
+	    set template "
+	    <table border=1 cellpadding=2 cellspacing=2>
+	    <tr>
+	    <td bgcolor=#cccccc>Name</td>
+	    <td bgcolor=#cccccc>Action</td>
+	    <td bgcolor=#cccccc>Size (bytes)</td>
+	    <td bgcolor=#cccccc>Type</td>
+	    <td bgcolor=#cccccc>Modified</td>
+	    </tr>
+	    $data
+	    </table>"
+	    
+	    if {!$rowcount} {
+		set template "<i>No items in this folder</i><P><a href=\"file-storage\">more...</a>"
+	    }
+
+	} else {
+	    # shaded	
+	    set template ""
 	}
-
+	
 	set code [template::adp_compile -string $template]
 
 	set output [template::adp_eval code]
