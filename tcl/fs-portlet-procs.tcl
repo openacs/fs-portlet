@@ -17,7 +17,7 @@ namespace eval fs_portlet {
 
     ad_proc -private my_name {
     } {
-    return "fs-portlet"
+    return "fs_portlet"
     }
 
     ad_proc -public get_pretty_name {
