@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<message_catalog package_key="fs-portlet" package_version="0.1a" locale="RO_RO" charset="utf-8">
+
+  <msg key="create_new_folder">Creează un director nou</msg>
+  <msg key="create_url">Creează un URL</msg>
+  <msg key="items">elemente</msg>
+  <msg key="pretty_name">Documente</msg>
+  <msg key="upload_file">Încarcă un fişier</msg>
+</message_catalog>

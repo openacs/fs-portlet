@@ -4,10 +4,10 @@
   <msg key="byte">Byte</msg>
   <msg key="bytes">Bytes</msg>
   <msg key="create_new_folder">Neuen Ordner erstellen</msg>
-  <msg key="create_url">URL hinzufügen</msg>
+  <msg key="create_url">Neue URL hinzufügen</msg>
   <msg key="item">Element</msg>
   <msg key="items">Elemente</msg>
   <msg key="pretty_name">Dateien</msg>
-  <msg key="upload_file">Datei hochladen</msg>
-  <msg key="view_details">Anschauen</msg>
+  <msg key="upload_file">Neue Datei hochladen</msg>
+  <msg key="view_details">Details anzeigen</msg>
 </message_catalog>

@@ -5,9 +5,9 @@
   <msg key="bytes">bait</msg>
   <msg key="create_new_folder">Buat folder baru</msg>
   <msg key="create_url">Buat URL</msg>
-  <msg key="item">bahan</msg>
-  <msg key="items">bahan-bahan</msg>
+  <msg key="item">butiran </msg>
+  <msg key="items">butiran-butiran </msg>
   <msg key="pretty_name">Dokumen</msg>
-  <msg key="upload_file">Muat atas fail</msg>
+  <msg key="upload_file">Muat naik fail</msg>
   <msg key="view_details">paparkan keterangan lanjut</msg>
 </message_catalog>

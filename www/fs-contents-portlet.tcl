@@ -64,6 +64,4 @@ if {!$delete_p} {
     set delete_p [permission::permission_p -object_id $folder_id -privilege "delete"]
 }
 
-db_multirow folders select_folder_contents {}
-
 ad_return_template 

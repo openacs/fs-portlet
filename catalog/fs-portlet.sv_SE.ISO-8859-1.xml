@@ -5,8 +5,8 @@
   <msg key="bytes">bytes</msg>
   <msg key="create_new_folder">Skapa ny mapp</msg>
   <msg key="create_url">Skapa URL</msg>
-  <msg key="item">inlägg</msg>
-  <msg key="items">inlägg</msg>
+  <msg key="item">objekt</msg>
+  <msg key="items">objekt</msg>
   <msg key="pretty_name">Dokument</msg>
   <msg key="upload_file">Ladda upp fil</msg>
   <msg key="view_details">se detaljer</msg>
