@@ -24,6 +24,9 @@
             <file type="data_model" db_type="oracle" path="sql/oracle/fs-contents-portlet-create.sql"/>
             <file type="data_model_create" db_type="oracle" path="sql/oracle/fs-portlet-create.sql"/>
             <file type="data_model_drop" db_type="oracle" path="sql/oracle/fs-portlet-drop.sql"/>
+            <file type="data_model" db_type="postgresql" path="sql/postgresql/fs-contents-portlet-create.sql"/>
+            <file type="data_model_create" db_type="postgresql" path="sql/postgresql/fs-portlet-create.sql"/>
+            <file type="data_model_drop" db_type="postgresql" path="sql/postgresql/fs-portlet-drop.sql"/>
             <file type="tcl_procs" path="tcl/fs-contents-portlet-procs.tcl"/>
             <file type="tcl_procs" path="tcl/fs-portlet-procs.tcl"/>
             <file type="query_file" db_type="oracle" path="www/fs-contents-portlet-oracle.xql"/>
