@@ -54,8 +54,10 @@ namespace eval fs_portlet {
     } {
         set extra_params [list "package_id" $instance_id]
 
-        return [portal::add_element_or_append_id -portal_id $portal_id \
+        return [portal::add_element_or_append_id \
+                -portal_id $portal_id \
                 -page_id $page_id \
+                -pretty_name [get_pretty_name] \
                 -portlet_name [my_name] \
                 -value_id $folder_id \
                 -key folder_id \
