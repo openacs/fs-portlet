@@ -120,22 +120,18 @@ namespace eval fs_portlet {
  	where  i.item_id   = f.folder_id
  	and    i.parent_id = :my_folder_id
  	and    acs_permission.permission_p(:my_folder_id, :user_id, 'read') = 't' order by ordering_key,name"
-	
-        set list_of_folder_ids $config(folder_id)
-        
-        if {[llength $list_of_folder_ids] > 1} {
-            set folder_img_data ""
-            set file_img_data ""
-        } else {
-            set folder_img_data  "<img border=0 src=./file-storage/graphics/folder.gif width=15 height=13>" 
-            set file_img_data  "<img border=0 src=./file-storage/graphics/file.gif width=13 height=15>" 
-        }
 
         set template "<table border=0 cellpadding=2 cellspacing=2 width=100%>"
 
         if { $config(shaded_p) == "f" } {
 
+            set list_of_folder_ids $config(folder_id)
+
             foreach my_folder_id $list_of_folder_ids {
+
+                set package_id [db_string get_package_id "select package_id from (select item_id from cr_items connect by prior parent_id = item_id start with item_id = :my_folder_id) this, fs_root_folders where item_id = folder_id"]
+
+                set url [dotlrn_community::get_url_from_package_id -package_id $package_id]
 
                 set data ""
                 set rowcount 0
@@ -143,11 +139,10 @@ namespace eval fs_portlet {
                 db_foreach select_files_and_folders $query {
                                         
                     if {$type == "Folder"} {
-         
-                        append data "<tr><td><a href=./file-storage/?folder_id=$file_id>$folder_img_data $name</a></td><td>$type</td><td>$num files</td>"
+                        append data "<tr><td><a href=${url}?folder_id=$file_id><img border=0 src=${url}graphics/folder.gif width=15 height=13> $name</a></td><td>$type</td><td>$num files</td>"
                     } else {
                         set type "File"
-                        append data "<tr><td><a href=./file-storage/file?file_id=$file_id>$file_img_data $name</a></td><td>$type</td><td><a href=./file-storage/download/$name?version_id=$file_live_rev>(download)</a></td>"
+                        append data "<tr><td><a href=${url}file?file_id=$file_id><img border=0 src=${url}graphics/file.gif width=15 height=13> $name?version_id=$file_live_rev>(download)</a></td>"
                     }
                     append template "\n$data\n"
                 }
@@ -176,7 +171,7 @@ namespace eval fs_portlet {
 
     ad_proc -public remove_self_from_page { 
 	portal_id 
-	community_id 
+	instance_id 
     } {
 	  Removes a fs PE from the given page 
     
@@ -191,7 +186,13 @@ namespace eval fs_portlet {
 	# remove all elements
 	db_transaction {
 	    foreach element_id $element_ids {
-		portal::remove_element $element_id
+		# Highly simplified (ben)
+		portal::remove_element_param_value -element_id $element_id -key instance_id -value $instance_id
+
+		# Check if we should really remove the element
+		if {[llength [portal::get_element_param_list -element_id $element_id -key instance_id]] == 0} {
+		    portal::remove_element $element_id
+		}
 	    }
 	}
     }
