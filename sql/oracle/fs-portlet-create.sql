@@ -22,7 +22,7 @@
 -- @version $Id$
 --
 
-@@ fs-contents-create.sql
+@@ fs-contents-portlet-create.sql
 
 declare
     ds_id portal_datasources.datasource_id%TYPE;
