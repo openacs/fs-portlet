@@ -32,7 +32,7 @@ namespace eval fs_portlet {
 
     ad_proc -public add_self_to_page { 
 	portal_id 
-	community_id
+	instance_id
 	folder_id 
     } {
 	Adds a fs PE to the given page with the community_id and 
@@ -45,17 +45,33 @@ namespace eval fs_portlet {
 	@author arjun@openforce.net
 	@creation-date Sept 2001
     } {
-	# Tell portal to add this element to the page
-	set element_id [portal::add_element $portal_id [my_name]]
+	# Add some smarts to only add one portlet for now when it's
+        # added multiple times (ben)
+	# Find out if bboard already exists
+	set element_id_list \
+                [portal::get_element_ids_by_ds $portal_id [my_name]]
+
+	if {[llength $element_id_list] == 0} {
+	    # Tell portal to add this element to the page
+	    set element_id [portal::add_element $portal_id [my_name]]
+	    # There is already a value for the param which must be overwritten
+	    portal::set_element_param $element_id instance_id $instance_id
+	    portal::set_element_param $element_id folder_id $folder_id
+	    set package_id_list [list]
+	} else {
+	    set element_id [lindex $element_id_list 0]
+	    # There are existing values which should NOT be overwritten
+	    portal::add_element_param_value \
+                    -element_id $element_id \
+                    -key instance_id \
+                    -value $instance_id
+
+	    portal::add_element_param_value \
+                    -element_id $element_id \
+                    -key folder_id \
+                    -value $folder_id
+	}
 	
-	# The default param "community_id" must be configured
-	set key "community_id"
-	portal::set_element_param $element_id $key $community_id
-
-	# The default param "folder_id" must be configured
-	set key "folder_id"
-	portal::set_element_param $element_id $key $folder_id
-
 	return $element_id
     }
 
@@ -72,10 +88,10 @@ namespace eval fs_portlet {
 
 	array set config $cf	
 
-	# things we need in the config 
-	# community_id and folder_id
+	# things we need in the config folder_id
 
 	# get user_id from the conn at this point
+
 	set user_id [ad_conn user_id]
 
 	# a big-time query from file-storage
@@ -89,60 +105,68 @@ namespace eval fs_portlet {
 	from   cr_items i, cr_revisions r, acs_objects o
 	where  i.item_id       = o.object_id
 	and    i.live_revision = r.revision_id (+)
-	and    i.parent_id     = $config(folder_id)
+	and    i.parent_id     = :my_folder_id
 	and    acs_permission.permission_p(i.item_id, :user_id, 'read') = 't'
 	and    i.content_type = 'content_revision'
 	UNION
-	select i.item_id as file_id,
+        select 
+        i.item_id as file_id,
 	f.label as name,
         0,
-	'Folder',
+ 	'Folder',
         0,
         (select count(*) from cr_items where parent_id = i.item_id) as num
-	from   cr_items i, cr_folders f
-	where  i.item_id   = f.folder_id
-	and    i.parent_id = $config(folder_id)
-	and    acs_permission.permission_p($config(folder_id), :user_id, 'read') = 't'
-	order by ordering_key,name"
+ 	from   cr_items i, cr_folders f
+ 	where  i.item_id   = f.folder_id
+ 	and    i.parent_id = :my_folder_id
+ 	and    acs_permission.permission_p(:my_folder_id, :user_id, 'read') = 't' order by ordering_key,name"
 	
-	set data ""
-	set rowcount 0
+        set list_of_folder_ids $config(folder_id)
+        
+        if {[llength $list_of_folder_ids] > 1} {
+            set folder_img_data ""
+            set file_img_data ""
+        } else {
+            set folder_img_data  "<img border=0 src=./file-storage/graphics/folder.gif width=15 height=13>" 
+            set file_img_data  "<img border=0 src=./file-storage/graphics/file.gif width=13 height=15>" 
+        }
 
-	if { $config(shaded_p) == "f" } {
+        set template "<table border=0 cellpadding=2 cellspacing=2 width=100%>"
 
-	    db_foreach select_files_and_folders $query {
-		if {$type == "Folder"} {
-                append data "<tr><td><a href=./file-storage/?folder_id=$file_id><img border=0 src=./file-storage/graphics/folder.gif width=15 height=13> $name</a></td><td>$type</td><td>$num files</td>"
+        if { $config(shaded_p) == "f" } {
 
-                } else {
-                    set type "File"
-                append data "<tr><td><a href=./file-storage/file?file_id=$file_id><img border=0 src=./file-storage/graphics/file.gif width=13 height=15> $name</a></td><td>$type</td><td><a href=./file-storage/download/$name?version_id=$file_live_rev>(download)</a></td>"
+            foreach my_folder_id $list_of_folder_ids {
 
+                set data ""
+                set rowcount 0
+                
+                db_foreach select_files_and_folders $query {
+                                        
+                    if {$type == "Folder"} {
+         
+                        append data "<tr><td><a href=./file-storage/?folder_id=$file_id>$folder_img_data $name</a></td><td>$type</td><td>$num files</td>"
+                    } else {
+                        set type "File"
+                        append data "<tr><td><a href=./file-storage/file?file_id=$file_id>$file_img_data $name</a></td><td>$type</td><td><a href=./file-storage/download/$name?version_id=$file_live_rev>(download)</a></td>"
+                    }
+                    append template "\n$data\n"
                 }
+            }
+            
+            append template "</table>"
+            
 
-		incr rowcount
-	    } 
-
-	    set template "
-	    <table border=0 cellpadding=2 cellspacing=2 width=100%>
-	    $data
-	    </table>"
-	    
-	    if {!$rowcount} {
-		set template "<i>No items in this folder</i><P><a href=\"file-storage\">more...</a>"
-	    }
-
-	} else {
-	    # shaded	
-	    set template ""
-	}
-	
-	set code [template::adp_compile -string $template]
-
-	set output [template::adp_eval code]
-	return $output
-
+        } else {
+            # shaded	 
+            set template ""
+        }
+                
+        set code [template::adp_compile -string $template]
+        
+        set output [template::adp_eval code]
+        return $output
     }
+
 
 
     ad_proc -public edit { 
