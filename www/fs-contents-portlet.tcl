@@ -14,16 +14,17 @@
 #  details.
 #
 
-# fs-portlet/www/fs-portlet.tcl
-
 ad_page_contract {
-    The display logic for the fs portlet
+    The display logic for the fs contents portlet. 
 
-    @author yon (yon@openforce.net)
+    These portlets show the contents of the given folder in a table 
+
+    re-using a lot of code from fs-portlet
+
     @author Arjun Sanyal (arjun@openforce.net)
-    @cvs_id $Id$
+    @version $Id$
+
 } -query {
-    {n_past_days "-1"}
 } -properties {
     user_id:onevalue
     user_root_folder:onevalue
@@ -40,41 +41,24 @@ array set config $cf
 set user_id [ad_conn user_id]
 set list_of_folder_ids $config(folder_id)
 set n_folders [llength $list_of_folder_ids]
-set scoped_p [ad_decode $config(scoped_p) t 1 0]
 
-set user_root_folder [dotlrn_fs::get_user_root_folder -user_id $user_id]
-set user_root_folder_present_p 0
-
-if {![empty_string_p $user_root_folder] && [lsearch -exact $list_of_folder_ids $user_root_folder] != -1} {
-    set folder_id $user_root_folder
-    set user_root_folder_present_p 1
-} else {
-    set folder_id [lindex $list_of_folder_ids 0]
+if {$n_folders != 1} {
+    # something went wrong, we can't have more than one folder here
+    ad_return -error
 }
 
+set folder_id [lindex $list_of_folder_ids 0]
 set url [portal::mapping::get_url -object_id $folder_id]
-set contents_url [lindex $config(contents_url) 0]
-
-if {[empty_string_p $contents_url]} {
-    set recurse_p 1
-    set contents_url "${url}folder-contents?[export_vars {folder_id recurse_p}]&"
-} else {
-    set contents_url "${contents_url}?"
-}
-
+set recurse_p 1
+set contents_url "${url}folder-contents?[export_vars {folder_id recurse_p}]&"
 set write_p [permission::permission_p -object_id $folder_id -privilege "write"]
 set admin_p [permission::permission_p -object_id $folder_id -privilege "admin"]
-
 set delete_p $admin_p
+
 if {!$delete_p} {
     set delete_p [permission::permission_p -object_id $folder_id -privilege "delete"]
 }
 
-set query "select_folder_contents"
-if {!$scoped_p} {
-    set query "select_folders"
-}
-
-db_multirow folders $query {}
+db_multirow folders select_folder_contents {}
 
 ad_return_template 
