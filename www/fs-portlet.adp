@@ -20,31 +20,31 @@
 
 <if @config.shaded_p@ false>
 
-<if @user_root_folder_present_p@ true>
-  <table>
+<if @n_folders@ eq 1 or @user_root_folder_present_p@ true>
 <if @write_p@ true>
+  <table>
     <tr>
       <td width="5%"><li></td>
       <td>
-        <a href="@url@file-add?folder_id=@user_root_folder@">
-          Upload a file to my personal folder
+        <a href="@url@file-add?folder_id=@folder_id@">
+          Upload a file
         </a>
         &nbsp;&nbsp;|&nbsp;&nbsp;
-        <a href="@url@simple-add?folder_id=@user_root_folder@">
-          Create a URL in my personal folder
+        <a href="@url@simple-add?folder_id=@folder_id@">
+          Create a URL
         </a>
     </tr>
     <tr>
       <td><li></td>
       <td>
-        <a href="@url@folder-create?parent_id=@user_root_folder@">
-          Create a new folder within my personal folder
+        <a href="@url@folder-create?parent_id=@folder_id@">
+          Create a new folder
         </a>
       </td>
     </tr>
-</if>
     <tr><td colspan="2"><br></td></tr>
   </table>
+</if>
 </if>
 
   <table border="0" cellpadding="2" cellspacing="2" width="100%">

@@ -32,32 +32,33 @@ ad_page_contract {
     delete_p:onevalue
     url:onevalue
     folders:multirow
+    n_folders:onevalue
 }
 
 array set config $cf
 set user_id [ad_conn user_id]
 set list_of_folder_ids $config(folder_id)
+set n_folders [llength $list_of_folder_ids]
 set style $config(style)
 
 set user_root_folder [dotlrn_fs::get_user_root_folder -user_id $user_id]
 set user_root_folder_present_p 0
-set write_p 0
-set admin_p 0
-set delete_p 0
-set url ""
 
 if {![empty_string_p $user_root_folder] && [lsearch -exact $list_of_folder_ids $user_root_folder] != -1} {
+    set folder_id $user_root_folder
     set user_root_folder_present_p 1
+} else {
+    set folder_id [lindex $list_of_folder_ids 0]
+}
 
-    set write_p [permission::permission_p -object_id $user_root_folder -privilege "write"]
-    set admin_p [permission::permission_p -object_id $user_root_folder -privilege "admin"]
+set url [portal::mapping::get_url -object_id $folder_id]
 
-    set delete_p $admin_p
-    if {!$delete_p} {
-        set delete_p [permission::permission_p -object_id $user_root_folder -privilege "delete"]
-    }
+set write_p [permission::permission_p -object_id $folder_id -privilege "write"]
+set admin_p [permission::permission_p -object_id $folder_id -privilege "admin"]
 
-    set url [portal::mapping::get_url -object_id $user_root_folder]
+set delete_p $admin_p
+if {!$delete_p} {
+    set delete_p [permission::permission_p -object_id $folder_id -privilege "delete"]
 }
 
 set query "select_folder_contents"
