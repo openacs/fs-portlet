@@ -100,9 +100,9 @@ begin
 
     -- create the implementation
     foo := acs_sc_impl.new(
-        'portal_datasource',
-        'fs_portlet',
-        'fs_portlet'
+        impl_contract_name => 'portal_datasource',
+        impl_name => 'fs_portlet',
+        impl_owner_name => 'fs_portlet'
     );
 
     -- add all the hooks
