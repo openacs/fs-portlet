@@ -68,6 +68,10 @@ namespace eval fs_portlet {
         }
 
         lappend extra_params [list package_id $package_id]
+        # it seems to me that package_id is not needed. 
+        # that allows for dotlrn-fs to be cleaned up - aks
+        #
+        #  -extra_params [eval concat $extra_params] 
 
         return [portal::add_element_parameters \
             -portal_id $portal_id \
@@ -77,8 +81,7 @@ namespace eval fs_portlet {
             -force_region $force_region \
             -param_action $param_action \
             -value $folder_id \
-            -key folder_id \
-            -extra_params [eval concat $extra_params] 
+            -key folder_id
         ]
     }
 
