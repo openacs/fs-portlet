@@ -18,10 +18,11 @@
 
 %>
 
-<if @config.shaded_p@ ne "t">
+<if @config.shaded_p@ false>
 
+<if @user_root_folder_present_p@ true>
   <table>
-<if @write_p@ eq 1>
+<if @write_p@ true>
     <tr>
       <td width="5%"><li></td>
       <td>
@@ -42,7 +43,7 @@
       </td>
     </tr>
 </if>
-<if @admin_p@ eq 1>
+<if @admin_p@ true>
     <tr><td colspan="2"><br></td></tr>
     <tr>
       <td><li></td>
@@ -55,6 +56,7 @@
 </if>
     <tr><td colspan="2"><br></td></tr>
   </table>
+</if>
 
   <table border="0" cellpadding="2" cellspacing="2" width="100%">
 <multiple name="folders">
