@@ -42,8 +42,9 @@
         </a>
       </td>
     </tr>
-    <tr><td colspan="2"><br></td></tr>
   </table>
+
+  <br>
 </if>
 </if>
 
