@@ -47,6 +47,18 @@ if {$n_folders != 1} {
     ad_return -error
 }
 
+# Get the root folder for the file storage instance we belong to, which is defined as the
+# one mounted beneath the current package (dotlrn or acs-subsite).  Root folder should really
+# be a parameter to the portlet, something I'll consider for 5.2/2.2.
+
+set file_storage_node_id [site_node::get_node_id_from_object_id \
+                             -object_id [ad_conn package_id]]
+set file_storage_package_id [site_node::get_children \
+                                -package_key file-storage \
+                                -node_id $file_storage_node_id \
+                                -element package_id]
+set root_folder_id [fs::get_root_folder -package_id $file_storage_package_id]
+
 set folder_id [lindex $list_of_folder_ids 0]
 set scope_fs_url "/packages/file-storage/www/folder-chunk"
 set n_past_days ""
