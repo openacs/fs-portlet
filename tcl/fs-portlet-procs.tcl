@@ -48,7 +48,6 @@ namespace eval fs_portlet {
     
 	@return element_id The new element's id
 	@param portal_id The page to add self to
-	@param community_id The community with the folder
 	@param folder_id The folder to show
 	@author arjun@openforce.net
 	@creation-date Sept 2001
@@ -68,14 +67,14 @@ namespace eval fs_portlet {
 	  Removes a fs PE from the given page 
     
 	  @param portal_id The page to remove self from
-	  @param community_id
 	  @author arjun@openforce.net
 	  @creation-date Sept 2001
     } {
-        portal::remove_element_or_remove_id -portal_id $portal_id \
-                -portlet_name [my_name] \
-                -value_id $folder_id \
-                -key "folder_id"
+        portal::remove_element_or_remove_id \
+            -portal_id $portal_id \
+            -portlet_name [my_name] \
+            -value_id $folder_id \
+            -key "folder_id"
     }
 
     ad_proc -public make_self_available { 
