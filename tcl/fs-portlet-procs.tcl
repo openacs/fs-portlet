@@ -112,18 +112,13 @@ namespace eval fs_portlet {
 
 	    db_foreach select_files_and_folders $query {
 		if {$type == "Folder"} {
-                append data "<tr><td><a href=./file-storage/?folder_id=$file_id><img border=0 src=./file-storage/graphics/folder.gif>$name</a></td><td>$type</td><td>$num files</td>"
+                append data "<tr><td><a href=./file-storage/?folder_id=$file_id><img border=0 src=./file-storage/graphics/folder.gif width=15 height=13> $name</a></td><td>$type</td><td>$num files</td>"
 
                 } else {
-# http://dotlrn.openforce.net:8000/dotlrn/classes/ck1/ck1-asf-asef/file-storage/download/LICENSE?version_id=3952
                     set type "File"
-                append data "<tr><td><a href=./file-storage/file?file_id=$file_id><img border=0 src=./file-storage/graphics/file.gif>$name</a></td><td>$type</td><td><a href=./file-storage/download/$name?version_id=$file_live_rev>(download)</a></td>"
+                append data "<tr><td><a href=./file-storage/file?file_id=$file_id><img border=0 src=./file-storage/graphics/file.gif width=13 height=15> $name</a></td><td>$type</td><td><a href=./file-storage/download/$name?version_id=$file_live_rev>(download)</a></td>"
 
                 }
-#http://dotlrn.openforce.net:8000/dotlrn/classes/ck1/ck1-asf-asef/file-storage/file?file_id=3951
-
-
-
 
 		incr rowcount
 	    } 
