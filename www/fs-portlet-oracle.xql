@@ -5,16 +5,16 @@
 
     <fullquery name="select_files_and_folders">
         <querytext>
-            select fs_folders_and_files.file_id,
-                   fs_folders_and_files.name,
-                   fs_folders_and_files.live_revision,
-                   fs_folders_and_files.type,
-                   fs_folders_and_files.content_size
-            from fs_folders_and_files
-            where fs_folders_and_files.file_id = :my_folder_id
-            and 't' = acs_permission.permission_p(fs_folders_and_files.file_id, :user_id, 'read')
-            order by fs_folders_and_files.sort_key,
-                     fs_folders_and_files.name
+            select fs_objects.object_id,
+                   fs_objects.name,
+                   fs_objects.live_revision,
+                   fs_objects.type,
+                   fs_objects.content_size
+            from fs_objects
+            where fs_objects.object_id = :my_folder_id
+            and 't' = acs_permission.permission_p(fs_objects.object_id, :user_id, 'read')
+            order by fs_objects.sort_key,
+                     fs_objects.name
         </querytext>
     </fullquery>
 

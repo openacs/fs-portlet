@@ -24,7 +24,7 @@
     <tr>
 <if @folders.type@ eq "Folder">
       <td>
-        <a href="@folders.url@?folder_id=@folders.file_id@">
+        <a href="@folders.url@?folder_id=@folders.object_id@">
           <img border="0" src="@folders.url@graphics/folder.gif" width="15" height="13">&nbsp;@folders.name@
         </a>
       </td>
@@ -43,7 +43,7 @@
 </if>
 <else>
       <td>
-        <a href="@folders.url@file?file_id=@folders.file_id@">
+        <a href="@folders.url@file?file_id=@folders.object_id@">
           <img border="0" src="@folders.url@graphics/file.gif" width="15" height="13">&nbsp;@folders.name@
         </a>
       </td>
