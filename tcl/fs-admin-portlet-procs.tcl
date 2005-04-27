@@ -33,7 +33,7 @@ namespace eval fs_admin_portlet {
 
     ad_proc -public get_pretty_name {
     } {
-        return "[_ fs-portlet.lt_File_Storage_Administ]"
+        return "#fs-portlet.lt_File_Storage_Adminis#"
     }
 
     ad_proc -private my_package_key {
