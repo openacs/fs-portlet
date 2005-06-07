@@ -1,12 +1,16 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
-<message_catalog package_key="fs-portlet" package_version="2.1.0b1" locale="es_ES" charset="ISO-8859-1">
+<message_catalog package_key="fs-portlet" package_version="2.1.2d1" locale="es_ES" charset="ISO-8859-1">
 
+  <msg key="advanced">(&lt;font=red&gt;Avanzado&lt;/font&gt;)</msg>
   <msg key="byte">byte</msg>
   <msg key="bytes">bytes</msg>
   <msg key="create_new_folder">Crear carpeta nueva</msg>
   <msg key="create_url">Crear un enlace</msg>
+  <msg key="edit_fs_parameters">Editar parámetros de file storage (AVANZADO)</msg>
+  <msg key="edit_upload_size_limit">Editar Límite de Carga</msg>
   <msg key="item">archivo</msg>
   <msg key="items">archivos</msg>
+  <msg key="lt_File_Storage_Administ">Administración de File Storage</msg>
   <msg key="pretty_name">Documentos</msg>
   <msg key="upload_file">Subir un archivo</msg>
   <msg key="view_details">ver detalles</msg>
