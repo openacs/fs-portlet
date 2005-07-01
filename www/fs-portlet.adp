@@ -58,7 +58,7 @@
           <td>
           <a href="@folders.url@?folder_id=@folders.object_id@">
 	  <img border="0" src="/resources/file-storage/folder.gif" height="14" width="14">
-	  </a>
+ 	  </a>
           </td>
           <td>
           <a href="@folders.url@?folder_id=@folders.object_id@">@folders.name@</a>
@@ -118,7 +118,6 @@
 <p>@notification_chunk;noquote@</p>
 
 <if @webdav_url@ not nil>
-      <% regsub -all {/\$} $webdav_url {/\\$} webdav_url %>
       <p>#file-storage.Folder_available_via_WebDAV_at#</p>
 </if>
 
