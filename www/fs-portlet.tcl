@@ -105,6 +105,7 @@ if [exists_and_not_null file_storage_package_id] {
     
     if { $use_webdav_p == 1} { 
 	set webdav_url [fs::webdav_url -item_id $folder_id -package_id $file_storage_package_id]
+        regsub -all {/\$} $webdav_url {/\\$} webdav_url
     }
 }
 
