@@ -117,8 +117,7 @@
 
 <p>@notification_chunk;noquote@</p>
 
-<if @webdav_url@ not nil>      
+<if @webdav_url@ not nil>
       <p>#file-storage.Folder_available_via_WebDAV_at#</p>
-      <p>@webdav_url@</p>
 </if>
 
