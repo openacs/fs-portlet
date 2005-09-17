@@ -6,7 +6,7 @@
   <msg key="bytes">Bytes</msg>
   <msg key="create_new_folder">Neuen Ordner erstellen</msg>
   <msg key="create_url">Neue URL hinzufügen</msg>
-  <msg key="edit_fs_parameters">Parameter für Fil Storage editieren (FORTGESCHRITTEN)</msg>
+  <msg key="edit_fs_parameters">Parameter für Dateiablage editieren (FORTGESCHRITTEN)</msg>
   <msg key="edit_upload_size_limit">Größenlimit für Uploads verändern</msg>
   <msg key="item">Element</msg>
   <msg key="items">Elemente</msg>
