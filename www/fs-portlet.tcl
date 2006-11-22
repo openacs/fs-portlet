@@ -85,61 +85,6 @@ set query "select_folders"
 if {$scoped_p} {
     set scope_fs_url "/packages/file-storage/www/folder-chunk"
 } else {
-
-    template::list::create -name folders -multirow folders -key forum_id -pass_properties {
-    } -elements {
-	item {
-	    label ""
-	    display_template {
-		<small>
-		<if @folders.type@ eq "folder">
-		 <div style="float:left;">
-		  <a href="@folders.url@?folder_id=@folders.object_id@">
-                   <img border="0" src="/resources/file-storage/folder.gif" height="14" width="14">
-                  </a> 
-		  <a href="@folders.url@?folder_id=@folders.object_id@">@folders.name@</a>
-                 </div>
-		 <div style="float:right;">
-		  #file-storage.folder_type_pretty_name#
-		  <if @folders.content_size@ eq 0>
-		   0 #fs-portlet.items#
-		  </if>
-		  <else>
-		   <if @folders.content_size@ gt 1>
-		    @folders.content_size@ #fs-portlet.items#
-		   </if>
-		   <else>
-                    @folders.content_size@ #fs-portlet.item#
-		   </else>
-		  </else>
-                 </div>
-		</if>
-		<else>
-		 <if @folders.type@ eq "url">
-		  <div style="float:left;">
-		   <a href="@folders.url@url-goto?url_id=@folders.object_id@"><img border="0" src="/resources/file-storage/file.gif"></a>
-		   <a href="@folders.url@url-goto?url_id=@folders.object_id@">@folders.name@</a>
-		   @folders.type@
-                  </div>
-		 </if>
-		 <else>
-		  <div style="float:left;">
-		   <a href="@folders.url@download/@folders.file_upload_name@?version_id=@folders.live_revision@">
-		    <img border="0" src="/resources/file-storage/file.gif"></a>
-		   <a href="@folders.url@download/@folders.file_upload_name@?version_id=@folders.live_revision@">@folders.name@</a>
-		  </div>
-		  <div style="float:right;">
-		   @folders.type@
-		   @folders.content_size@ <if @folders.content_size eq 1>#fs-portlet.byte#</if><else>#fs-portlet.bytes#</else>
-		   \[<a href="@folders.url@file?file_id=@folders.object_id@">#fs-portlet.view_details#</a>\]
-                  </div>
-		 </else>
-		</else>
-	       </small>
-	    }
-	}
-    }
-
     db_multirow folders $query {
         # The name of the folder may contain message keys that need to be localized on the fly
         set name [lang::util::localize $name]
