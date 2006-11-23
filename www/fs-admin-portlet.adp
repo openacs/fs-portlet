@@ -20,6 +20,6 @@
 
 
 <ul>
-  <li><a href=file-storage/admin/upload-size-limit?<%=[export_url_vars return_url]%>>#fs-portlet.edit_upload_size_limit#</a>
-  <if @show_fs_url_p@ eq 1><li><a href=@fs_url@>#fs-portlet.edit_fs_parameters#</a></li></if>
+  <li><a href="file-storage/admin/upload-size-limit?<%=[export_url_vars return_url]%>" title="#fs-portlet.edit_upload_size_limit#">#fs-portlet.edit_upload_size_limit#</a>
+  <if @show_fs_url_p@ eq 1><li><a href="@fs_url@" title="#fs-portlet.edit_fs_parameters#">#fs-portlet.edit_fs_parameters#</a></li></if>
 </ul>
