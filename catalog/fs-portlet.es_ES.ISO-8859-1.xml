@@ -11,6 +11,7 @@
   <msg key="item">archivo</msg>
   <msg key="items">archivos</msg>
   <msg key="lt_File_Storage_Administ">Administración de Documentos </msg>
+  <msg key="open_folder_folders_name">Abrir carpeta %folders.name%</msg>
   <msg key="pretty_name">Documentos</msg>
   <msg key="upload_file">Subir un archivo</msg>
   <msg key="view_details">ver detalles</msg>
