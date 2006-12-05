@@ -14,7 +14,7 @@
 
         <provides url="fs-portlet" version="2.2.1a1"/>
         <requires url="file-storage" version="5.2.0d8"/>
-        <requires url="new-portal" version="2.2.0a1"/>
+        <requires url="new-portal" version="2.2.1a1"/>
 
         <parameters>
             <parameter datatype="number"  min_n_values="1"  max_n_values="1"  name="ShowParametersLinkP"  default="1" description="Should we link to the file-storage instance's parameter settings page?"/>
