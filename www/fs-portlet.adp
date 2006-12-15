@@ -32,11 +32,11 @@
       <td>
         <nobr>
           <small>[
-            <a href="@url@folder-create?parent_id=@folder_id@">#fs-portlet.create_new_folder#</a>
+            <a href="@url@folder-create?parent_id=@folder_id@" title="#fs-portlet.create_new_folder#">#fs-portlet.create_new_folder#</a>
             |
-            <a href="@url@file-add?folder_id=@folder_id@">#fs-portlet.upload_file#</a>
+            <a href="@url@file-add?folder_id=@folder_id@" title="#fs-portlet.upload_file#">#fs-portlet.upload_file#</a>
             |
-            <a href="@url@simple-add?folder_id=@folder_id@">#fs-portlet.create_url#</a>
+            <a href="@url@simple-add?folder_id=@folder_id@" title="#fs-portlet.create_url#">#fs-portlet.create_url#</a>
           ]</small>
         </nobr>
       </td>
@@ -56,12 +56,12 @@
 
        <if @folders.type@ eq "folder">
           <td>
-          <a href="@folders.url@?folder_id=@folders.object_id@">
-	  <img border="0" src="/resources/file-storage/folder.gif" height="14" width="14">
+          <a href="@folders.url@?folder_id=@folders.object_id@" title="#fs-portlet.open_folder_folders_name#">
+	  <img border="0" src="/resources/file-storage/folder.gif" height="14" width="14" alt="#file-storage.folder#">
  	  </a>
           </td>
           <td>
-          <a href="@folders.url@?folder_id=@folders.object_id@">@folders.name@</a>
+          <a href="@folders.url@?folder_id=@folders.object_id@" title="#fs-portlet.open_folder_folders_name#">@folders.name@</a>
           </td>
           <td><small>#file-storage.folder_type_pretty_name#</small></td>
           <if @folders.content_size@ eq 0>

@@ -98,7 +98,7 @@ set notification_chunk [notification::display::request_widget \
     -type fs_fs_notif \
     -object_id $folder_id \
     -pretty_name $folder_name \
-    -url [ad_conn url]?folder_id=$folder_id \
+    -url [ad_conn url]?[ad_conn query]&folder_id=$folder_id \
     ]
 
 if [exists_and_not_null file_storage_package_id] {

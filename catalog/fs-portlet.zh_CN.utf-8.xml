@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<message_catalog package_key="fs-portlet" package_version="2.2.0b2" locale="zh_CN" charset="utf-8">
+<message_catalog package_key="fs-portlet" package_version="2.2.0" locale="zh_CN" charset="utf-8">
 
   <msg key="advanced">(&lt;font=red&gt;高级&lt;/font&gt;)</msg>
   <msg key="byte">字节</msg>
