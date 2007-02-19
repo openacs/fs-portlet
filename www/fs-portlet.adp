@@ -27,25 +27,14 @@
 <else>
 
 <if @write_p@ true>
-  <table width="100%">
-    <tr>
-      <td>
-        <nobr>
-          <small>[
-            <a href="@url@folder-create?parent_id=@folder_id@" title="#fs-portlet.create_new_folder#">#fs-portlet.create_new_folder#</a>
-            |
-            <a href="@url@file-add?folder_id=@folder_id@" title="#fs-portlet.upload_file#">#fs-portlet.upload_file#</a>
-            |
-            <a href="@url@simple-add?folder_id=@folder_id@" title="#fs-portlet.create_url#">#fs-portlet.create_url#</a>
-          ]</small>
-        </nobr>
-      </td>
-    </tr>
-  </table>
+	<div class="list-button-bar-top">
+		<a href="@url@folder-create?parent_id=@folder_id@" class="button" title="#fs-portlet.create_new_folder#">#fs-portlet.create_new_folder#</a>
+		<a href="@url@file-add?folder_id=@folder_id@" class="button" title="#fs-portlet.upload_file#">#fs-portlet.upload_file#</a>
+		<a href="@url@simple-add?folder_id=@folder_id@" class="button" title="#fs-portlet.create_url#">#fs-portlet.create_url#</a>
+	</div>
 
 </if>
   <listtemplate name="folders"></listtemplate>
-
 </else>
 </if>
 <else>
