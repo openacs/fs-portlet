@@ -93,15 +93,15 @@ if {$scoped_p} {
 	    display_template {
 		<if @folders.type@ eq "folder">
 		  <a href="@folders.url@?folder_id=@folders.object_id@">
-		  <img border="0" src="/resources/file-storage/folder.gif" height="16" width="16">
+		  <img border="0" src="/resources/file-storage/folder.gif" height="16" width="16" alt="#file-storage.Folder#">
                   </a> 
 		</if>
 		<elseif @folders.type@ eq "url">
-		    <a href="@folders.url@url-goto?url_id=@folders.object_id@"><img border="0" src="/resources/file-storage/file.gif"></a>
+		    <a href="@folders.url@url-goto?url_id=@folders.object_id@"><img border="0" src="/resources/file-storage/file.gif" alt="#file-storage.File#"></a>
 		</elseif>
 		<else>
 		   <a href="@folders.url@download/@folders.file_upload_name@?version_id=@folders.live_revision@">
-		   <img border="0" src="/resources/file-storage/file.gif"></a>
+		   <img border="0" src="/resources/file-storage/file.gif" alt="#file-storage.File#"></a>
 		</else>
 	    }
 	}
