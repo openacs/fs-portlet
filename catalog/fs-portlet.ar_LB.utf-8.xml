@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<message_catalog package_key="fs-portlet" package_version="2.2.0" locale="ar_LB" charset="utf-8">
+<message_catalog package_key="fs-portlet" package_version="2.3.0" locale="ar_LB" charset="utf-8">
 
   <msg key="advanced">(&amp;lt;font=red&amp;gt;Advanced&amp;lt;/font&amp;gt;)</msg>
   <msg key="byte">بايت</msg>
