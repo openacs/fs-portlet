@@ -21,7 +21,7 @@
 <if @config.shaded_p@ false>
 
 <if @scoped_p@ eq 1>
-<include src=@scope_fs_url@ folder_id=@folder_id@ root_folder_id=@folder_id@ viewing_user_id=@user_id@ n_past_days=@n_past_days@ fs_url="@url@" page_num="@page_num@">
+<include src=@scope_fs_url@ folder_id=@folder_id@ root_folder_id=@folder_id@ viewing_user_id=@user_id@ n_past_days=@n_past_days@ allow_bulk_actions="1" fs_url="@url@" page_num="@page_num@">
 </if>
 
 <else>
