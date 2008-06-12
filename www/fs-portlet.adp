@@ -37,15 +37,16 @@
   <listtemplate name="folders"></listtemplate>
 </else>
 </if>
-<else>
-<small>
-    #new-portal.when_portlet_shaded#
-  </small>
-</else>
 
 <p>@notification_chunk;noquote@</p>
 
 <if @webdav_url@ not nil>
       <p>#file-storage.Folder_available_via_WebDAV_at#</p>
 </if>
+
+<else>
+<small>
+    #new-portal.when_portlet_shaded#
+  </small>
+</else>
 
