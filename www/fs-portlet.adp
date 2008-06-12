@@ -36,7 +36,6 @@
 </if>
   <listtemplate name="folders"></listtemplate>
 </else>
-</if>
 
 <p>@notification_chunk;noquote@</p>
 
@@ -44,6 +43,7 @@
       <p>#file-storage.Folder_available_via_WebDAV_at#</p>
 </if>
 
+</if>
 <else>
 <small>
     #new-portal.when_portlet_shaded#
