@@ -19,7 +19,11 @@
 %>
 
 <if @config.shaded_p@ false>
+<if @use_ajaxfs_p@ eq 1>
+<include src="/packages/ajax-filestorage-ui/lib/ajaxfs-include" package_id="@file_storage_package_id@" folder_id="@folder_id@" layoutdiv="fscontainer">
+</if>
 
+<div id="fscontainer">
 <if @scoped_p@ eq 1>
 <include src=@scope_fs_url@ folder_id=@folder_id@ root_folder_id=@folder_id@ viewing_user_id=@user_id@ n_past_days=@n_past_days@ allow_bulk_actions="1" fs_url="@url@" page_num="@page_num@">
 </if>
@@ -42,6 +46,7 @@
     #new-portal.when_portlet_shaded#
   </small>
 </else>
+</div>
 
 <p>@notification_chunk;noquote@</p>
 

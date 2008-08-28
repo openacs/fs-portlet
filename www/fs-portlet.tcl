@@ -49,6 +49,7 @@ set user_root_folder_present_p 0
 if {![empty_string_p $user_root_folder] && [lsearch -exact $list_of_folder_ids $user_root_folder] != -1} {
     set folder_id $user_root_folder
     set user_root_folder_present_p 1
+    set use_ajaxfs_p 0
 } else {
     set folder_id [lindex $list_of_folder_ids 0]
     set file_storage_node_id [site_node::get_node_id_from_object_id \
@@ -57,6 +58,8 @@ if {![empty_string_p $user_root_folder] && [lsearch -exact $list_of_folder_ids $
                                 -package_key file-storage \
                                 -node_id $file_storage_node_id \
                                 -element package_id]
+    set use_ajaxfs_p [parameter::get -package_id $file_storage_package_id -parameter UseAjaxFs -default 0]
+
 }
 
 set url [site_node_object_map::get_url -object_id $folder_id]
@@ -179,6 +182,5 @@ if [exists_and_not_null file_storage_package_id] {
         regsub -all {/\$} $webdav_url {/\\$} webdav_url
     }
 }
-
 
 ad_return_template 
