@@ -91,71 +91,60 @@ if {$scoped_p} {
 
     template::list::create -name folders -multirow folders -key forum_id -pass_properties {
     } -elements {
-	icon {
-	    label ""
-	    display_template {
-		<if @folders.type@ eq "folder">
-		  <a href="@folders.url@?folder_id=@folders.object_id@">
-		  <img border="0" src="/resources/file-storage/folder.gif" height="16" width="16" alt="#file-storage.Folder#">
-                  </a> 
-		</if>
-		<elseif @folders.type@ eq "url">
-		    <a href="@folders.url@url-goto?url_id=@folders.object_id@"><img border="0" src="/resources/file-storage/file.gif" alt="#file-storage.File#"></a>
-		</elseif>
-		<else>
-		   <a href="@folders.url@download/@folders.file_upload_name@?version_id=@folders.live_revision@">
-		   <img border="0" src="/resources/file-storage/file.gif" alt="#file-storage.File#"></a>
-		</else>
-	    }
-	}
-	name {
-	    label ""
-	    display_template {
-		<if @folders.type@ eq "folder">
-		  <a href="@folders.url@?folder_id=@folders.object_id@">@folders.name@</a>		
-		</if>
-		<elseif @folders.type@ eq "url">
-		  <a href="@folders.url@url-goto?url_id=@folders.object_id@">@folders.name@</a>
-		</elseif>
-		<else>
-		   <a href="@folders.url@download/@folders.file_upload_name@?version_id=@folders.live_revision@">@folders.name@</a>
-		</else>
-	    }
-	}
-	type {
-	    label ""
-	    display_template {
-		<if @folders.type@ eq "folder">
-		  #file-storage.folder_type_pretty_name#
-		</if>
-		<else>
-		   @folders.type@
-		</else>
-	    }
-	}
-	size {
-	    label ""
-	    display_template {
-		<if @folders.type@ eq "folder">
-		  <if @folders.content_size@ eq 0>
-		    0 #fs-portlet.items#
-		  </if>
-		  <elseif @folders.content_size@ gt 1>
-		    @folders.content_size@ #fs-portlet.items#
-		  </elseif>
-	          <else>
-                    @folders.content_size@ #fs-portlet.item#
-		  </else>
-		</if>
-		<elseif @folders.type@ eq "url">
-		   <i>n/a</i>
-		</elseif>
-		<else>
-		   @folders.content_size@ <if @folders.content_size eq 1>#fs-portlet.byte#</if><else>#fs-portlet.bytes#</else>
-		   \[<a href="@folders.url@file?file_id=@folders.object_id@">#fs-portlet.view_details#</a>\]
-		</else>
-	    }
-	}
+        icon {
+            label "[_ file-storage.Type]"
+            display_template {
+                <if @folders.type@ eq "folder">
+                <img src="/resources/file-storage/folder.gif" height="16" width="16" alt="#file-storage.Folder#" style="border:0">
+                #file-storage.folder_type_pretty_name#
+                </if>
+                <elseif @folders.type@ eq "url">
+                <img src="/resources/file-storage/file.gif" alt="#file-storage.File#" style="border:0">
+                @folders.type@
+                </elseif>
+                <else>
+                <img src="/resources/file-storage/file.gif" alt="#file-storage.File#" style="border:0">
+                @folders.type@
+                </else>
+            }
+        }
+        name {
+            label "[_ file-storage.Name]"
+            display_template {
+                <if @folders.type@ eq "folder">
+                <a href="@folders.url@?folder_id=@folders.object_id@">@folders.name@</a>      
+                </if>
+                <elseif @folders.type@ eq "url">
+                <a href="@folders.url@url-goto?url_id=@folders.object_id@">@folders.name@</a>
+                </elseif>
+                <else>
+                <a href="@folders.url@download/@folders.file_upload_name@?version_id=@folders.live_revision@">@folders.name@</a>
+                </else>
+            }
+        }
+        size {
+            label "[_ file-storage.Size]"
+            display_template {
+                <if @folders.type@ eq "folder">
+                <if @folders.content_size@ eq 0>
+                0 #fs-portlet.items#
+                </if>
+                <elseif @folders.content_size@ gt 1>
+                @folders.content_size@ #fs-portlet.items#
+                </elseif>
+                <else>
+                @folders.content_size@ #fs-portlet.item#
+                </else>
+                </if>
+                <elseif @folders.type@ eq "url">
+                <i>n/a</i>
+                </elseif>
+                <else>
+                @folders.content_size@ <if @folders.content_size eq 1>#fs-portlet.byte#</if><else>#fs-portlet.bytes#</else>
+                \[<a href="@folders.url@file?file_id=@folders.object_id@">#fs-portlet.view_details#</a>\]
+                </else>
+            }
+        }
     }
 
     db_multirow folders $query {
