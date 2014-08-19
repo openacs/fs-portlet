@@ -77,7 +77,7 @@ namespace eval fs_contents_portlet {
             
             portal::set_element_param $element_id folder_id $folder_id
 
-            if {![empty_string_p $hide_p]} {
+            if {$hide_p ne ""} {
                 portal::configure_element -noconn 1 $element_id hide "" 
             }
         }

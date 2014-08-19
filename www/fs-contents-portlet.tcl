@@ -73,7 +73,7 @@ set notification_chunk [notification::display::request_widget \
     -url [ad_conn url]?folder_id=$folder_id \
     ]
 
-if [exists_and_not_null file_storage_package_id] {
+if {([info exists file_storage_package_id] && $file_storage_package_id ne "")} {
     set use_webdav_p  [parameter::get -package_id $file_storage_package_id -parameter "UseWebDavP"]
     
     if { $use_webdav_p == 1} { 

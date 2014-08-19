@@ -63,7 +63,7 @@ namespace eval fs_portlet {
 
         @return element_id The new element's id
     } {
-        if {[empty_string_p $extra_params]} {
+        if {$extra_params eq ""} {
             set extra_params [list]
         }
 

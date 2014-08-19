@@ -46,7 +46,7 @@ set scoped_p [ad_decode $config(scoped_p) t 1 0]
 set user_root_folder [dotlrn_fs::get_user_root_folder -user_id $user_id]
 set user_root_folder_present_p 0
 
-if {![empty_string_p $user_root_folder] && [lsearch -exact $list_of_folder_ids $user_root_folder] != -1} {
+if {$user_root_folder ne "" && [lsearch -exact $list_of_folder_ids $user_root_folder] != -1} {
     set folder_id $user_root_folder
     set user_root_folder_present_p 1
     set use_ajaxfs_p 0
@@ -65,7 +65,7 @@ if {![empty_string_p $user_root_folder] && [lsearch -exact $list_of_folder_ids $
 set url [site_node_object_map::get_url -object_id $folder_id]
 set contents_url [lindex $config(contents_url) 0]
 
-if {[empty_string_p $contents_url]} {
+if {$contents_url eq ""} {
     set recurse_p 1
     set contents_url "${url}folder-contents?[export_vars {folder_id recurse_p}]&"
 } else {
@@ -163,7 +163,7 @@ set notification_chunk [notification::display::request_widget \
     -url [ad_conn url]?[ad_conn query]&folder_id=$folder_id \
     ]
 
-if [exists_and_not_null file_storage_package_id] {
+if {([info exists file_storage_package_id] && $file_storage_package_id ne "")} {
     set use_webdav_p  [parameter::get -package_id $file_storage_package_id -parameter "UseWebDavP"]
     
     if { $use_webdav_p == 1} { 
