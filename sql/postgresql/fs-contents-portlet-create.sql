@@ -20,139 +20,146 @@
 -- @version $Id$
 --
 
-create function inline_0()
-returns integer as '
-declare
+
+
+--
+-- procedure inline_0/0
+--
+CREATE OR REPLACE FUNCTION inline_0(
+
+) RETURNS integer AS $$
+DECLARE
     ds_id portal_datasources.datasource_id%TYPE;
     foo integer;
-begin
+BEGIN
 
     ds_id := portal_datasource__new(
-          ''fs_contents_portlet'',
-          ''Displays one fs folder in a table''
+          'fs_contents_portlet',
+          'Displays one fs folder in a table'
     );
 
     perform portal_datasource__set_def_param(
           ds_id,
-          ''t'',
-          ''t'',
-          ''shadeable_p'',
-          ''t''
+          't',
+          't',
+          'shadeable_p',
+          't'
     );
 
     perform portal_datasource__set_def_param(
           ds_id,
-          ''t'',
-          ''t'',
-          ''hideable_p'',
-          ''t''
+          't',
+          't',
+          'hideable_p',
+          't'
     );
 
     perform portal_datasource__set_def_param(
           ds_id,
-          ''t'',
-          ''t'',
-          ''user_editable_p'',
-          ''f''
+          't',
+          't',
+          'user_editable_p',
+          'f'
     );
 
     perform portal_datasource__set_def_param(
           ds_id,
-          ''t'',
-          ''t'',
-          ''shaded_p'',
-          ''f''
+          't',
+          't',
+          'shaded_p',
+          'f'
     );
 
     perform portal_datasource__set_def_param(
           ds_id,
-          ''t'',
-          ''t'',
-          ''link_hideable_p'',
-          ''t''
+          't',
+          't',
+          'link_hideable_p',
+          't'
     );
 
     perform portal_datasource__set_def_param(
           ds_id,
-          ''t'',
-          ''f'',
-          ''folder_id'',
-          ''''
+          't',
+          'f',
+          'folder_id',
+          ''
     );
 
     -- create the implementation
     foo := acs_sc_impl__new(
-        ''portal_datasource'',
-        ''fs_contents_portlet'',
-        ''fs_contents_portlet''
+        'portal_datasource',
+        'fs_contents_portlet',
+        'fs_contents_portlet'
     );
 
     -- add all the hooks
     foo := acs_sc_impl_alias__new(
-        ''portal_datasource'',
-        ''fs_contents_portlet'',
-        ''GetMyName'',
-        ''fs_contents_portlet::get_my_name'',
-        ''TCL''
+        'portal_datasource',
+        'fs_contents_portlet',
+        'GetMyName',
+        'fs_contents_portlet::get_my_name',
+        'TCL'
     );
 
     foo := acs_sc_impl_alias__new(
-        ''portal_datasource'',
-        ''fs_contents_portlet'',
-        ''GetPrettyName'',
-        ''fs_contents_portlet::get_pretty_name'',
-        ''TCL''
+        'portal_datasource',
+        'fs_contents_portlet',
+        'GetPrettyName',
+        'fs_contents_portlet::get_pretty_name',
+        'TCL'
     );
 
     foo := acs_sc_impl_alias__new(
-        ''portal_datasource'',
-        ''fs_contents_portlet'',
-        ''Link'',
-        ''fs_contents_portlet::link'',
-        ''TCL''
+        'portal_datasource',
+        'fs_contents_portlet',
+        'Link',
+        'fs_contents_portlet::link',
+        'TCL'
     );
 
     foo := acs_sc_impl_alias__new(
-        ''portal_datasource'',
-        ''fs_contents_portlet'',
-        ''AddSelfToPage'',
-        ''fs_contents_portlet::add_self_to_page'',
-        ''TCL''
+        'portal_datasource',
+        'fs_contents_portlet',
+        'AddSelfToPage',
+        'fs_contents_portlet::add_self_to_page',
+        'TCL'
     );
 
     foo := acs_sc_impl_alias__new(
-        ''portal_datasource'',
-        ''fs_contents_portlet'',
-        ''Show'',
-        ''fs_contents_portlet::show'',
-        ''TCL''
+        'portal_datasource',
+        'fs_contents_portlet',
+        'Show',
+        'fs_contents_portlet::show',
+        'TCL'
     );
 
     foo := acs_sc_impl_alias__new(
-        ''portal_datasource'',
-        ''fs_contents_portlet'',
-        ''Edit'',
-        ''fs_contents_portlet::edit'',
-        ''TCL''
+        'portal_datasource',
+        'fs_contents_portlet',
+        'Edit',
+        'fs_contents_portlet::edit',
+        'TCL'
     );
 
     foo := acs_sc_impl_alias__new(
-        ''portal_datasource'',
-        ''fs_contents_portlet'',
-        ''RemoveSelfFromPage'',
-        ''fs_contents_portlet::remove_self_from_page'',
-        ''TCL''
+        'portal_datasource',
+        'fs_contents_portlet',
+        'RemoveSelfFromPage',
+        'fs_contents_portlet::remove_self_from_page',
+        'TCL'
     );
 
     -- Add the binding
     perform acs_sc_binding__new(
-          ''portal_datasource'',
-          ''fs_contents_portlet''
+          'portal_datasource',
+          'fs_contents_portlet'
     );
 
     return 0;
 
-end;' language 'plpgsql';
+END;
+$$ LANGUAGE plpgsql;
 
 select inline_0();
 drop function inline_0();
