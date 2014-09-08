@@ -20,7 +20,7 @@ ad_library {
     Used for the "handouts", "assignments", etc. portlets 
 
     @author Arjun Sanyal (arjun@openforce.net)
-    @version $Id$
+    @cvs-id $Id$
 
 }
 

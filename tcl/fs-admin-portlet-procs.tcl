@@ -20,7 +20,7 @@ ad_library {
 
     @creation-date 2004-07-07
     @author Tracy Adams (teadams@mit.edu)
-    @version $Id$
+    @cvs-id $Id$
 
 }
 
