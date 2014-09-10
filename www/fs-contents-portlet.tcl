@@ -41,7 +41,7 @@ set n_folders [llength $list_of_folder_ids]
 
 if {$n_folders != 1} {
     # something went wrong, we can't have more than one folder here
-    ad_return -error
+    return -code error "can't have more than one folder"
 }
 
 # Get the root folder for the file storage instance we belong to, which is defined as the
