@@ -46,7 +46,7 @@ set scoped_p [ad_decode $config(scoped_p) t 1 0]
 set user_root_folder [dotlrn_fs::get_user_root_folder -user_id $user_id]
 set user_root_folder_present_p 0
 
-if {$user_root_folder ne "" && [lsearch -exact $list_of_folder_ids $user_root_folder] != -1} {
+if {$user_root_folder ne "" && $user_root_folder in $list_of_folder_ids} {
     set folder_id $user_root_folder
     set user_root_folder_present_p 1
     set use_ajaxfs_p 0
@@ -67,7 +67,7 @@ set contents_url [lindex $config(contents_url) 0]
 
 if {$contents_url eq ""} {
     set recurse_p 1
-    set contents_url "${url}folder-contents?[export_vars {folder_id recurse_p}]&"
+    set contents_url [export_vars -base ${url}folder-contents {folder_id recurse_p}]&
 } else {
     set contents_url "${contents_url}?"
 }

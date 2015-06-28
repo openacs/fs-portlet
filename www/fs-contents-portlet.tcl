@@ -61,7 +61,7 @@ set scope_fs_url "/packages/file-storage/www/folder-chunk"
 set n_past_days ""
 set url [site_node_object_map::get_url -object_id $folder_id]
 set recurse_p 1
-set contents_url "${url}folder-contents?[export_vars {folder_id recurse_p}]&"
+set contents_url [export_vars -base ${url}folder-contents {folder_id recurse_p}]&
 
 # Enable Notifications
 
