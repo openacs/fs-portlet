@@ -20,12 +20,12 @@
 
 <if @config.shaded_p@ false>
 <if @use_ajaxfs_p@ eq 1>
-<include src="/packages/ajax-filestorage-ui/lib/ajaxfs-include" package_id="@file_storage_package_id@" folder_id="@folder_id@" layoutdiv="fscontainer">
+<include src="/packages/ajax-filestorage-ui/lib/ajaxfs-include" package_id="@file_storage_package_id;literal@" folder_id="@folder_id;literal@" layoutdiv="fscontainer">
 </if>
 
 <div id="fscontainer">
 <if @scoped_p@ eq 1>
-<include src=@scope_fs_url@ folder_id=@folder_id@ root_folder_id=@folder_id@ viewing_user_id=@user_id@ n_past_days=@n_past_days@ allow_bulk_actions="1" fs_url="@url@" page_num="@page_num@">
+<include src="@scope_fs_url;literal@" folder_id="@folder_id;literal@" root_folder_id="@folder_id;literal@" viewing_user_id="@user_id;literal@" n_past_days="@n_past_days;literal@" allow_bulk_actions="1" fs_url="@url;literal@" page_num="@page_num;literal@">
 </if>
 
 <else>
