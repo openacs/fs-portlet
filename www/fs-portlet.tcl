@@ -156,12 +156,7 @@ if {$scoped_p} {
 # Enable Notifications
 
 set folder_name [fs_get_folder_name $folder_id]
-set notification_chunk [notification::display::request_widget \
-    -type fs_fs_notif \
-    -object_id $folder_id \
-    -pretty_name $folder_name \
-    -url [ad_conn url]?[ad_conn query]&folder_id=$folder_id \
-    ]
+set folder_url [ad_conn url]?[ad_conn query]&folder_id=$folder_id
 
 if {([info exists file_storage_package_id] && $file_storage_package_id ne "")} {
     set use_webdav_p  [parameter::get -package_id $file_storage_package_id -parameter "UseWebDavP"]

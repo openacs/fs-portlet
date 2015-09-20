@@ -20,12 +20,15 @@
 
 <if @config.shaded_p@ false>
 <if @use_ajaxfs_p@ eq 1>
-<include src="/packages/ajax-filestorage-ui/lib/ajaxfs-include" package_id="@file_storage_package_id;literal@" folder_id="@folder_id;literal@" layoutdiv="fscontainer">
+<include src="/packages/ajax-filestorage-ui/lib/ajaxfs-include" package_id="@file_storage_package_id;literal@"
+	 &="folder_id" layoutdiv="fscontainer">
 </if>
 
 <div id="fscontainer">
 <if @scoped_p@ eq 1>
-<include src="@scope_fs_url;literal@" folder_id="@folder_id;literal@" root_folder_id="@folder_id;literal@" viewing_user_id="@user_id;literal@" n_past_days="@n_past_days;literal@" allow_bulk_actions="1" fs_url="@url;literal@" page_num="@page_num;literal@">
+<include src="@scope_fs_url;literal@" &="folder_id" root_folder_id="@folder_id;literal@"
+	 viewing_user_id="@user_id;literal@" &="n_past_days" allow_bulk_actions="1"
+	 fs_url="@url;literal@" &="page_num">
 </if>
 
 <else>
@@ -41,8 +44,11 @@
   <listtemplate name="folders"></listtemplate>
 </else>
 
-<p>@notification_chunk;noquote@</p>
-
+<p><include src="/packages/notifications/lib/notification-widget" type="fs_fs_notif"
+	 object_id="@folder_id;literal@"
+	 pretty_name="@folder_name;literal@"
+	 url="@folder_url;literal@" >
+	 
 <if @webdav_url@ not nil>
       <p>#file-storage.Folder_available_via_WebDAV_at#</p>
 </if>
