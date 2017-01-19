@@ -18,14 +18,14 @@
 
 %>
 
-<if @config.shaded_p@ false>
-<if @use_ajaxfs_p@ eq 1>
+<if @config.shaded_p;literal@ false>
+<if @use_ajaxfs_p;literal@ true>
 <include src="/packages/ajax-filestorage-ui/lib/ajaxfs-include" package_id="@file_storage_package_id;literal@"
 	 &="folder_id" layoutdiv="fscontainer">
 </if>
 
 <div id="fscontainer">
-<if @scoped_p@ eq 1>
+<if @scoped_p;literal@ true>
 <include src="@scope_fs_url;literal@" &="folder_id" root_folder_id="@root_folder_id;literal@"
 	 viewing_user_id="@user_id;literal@" &="n_past_days" allow_bulk_actions="1"
 	 fs_url="@url;literal@" &="page_num">
@@ -33,7 +33,7 @@
 
 <else>
 
-<if @write_p@ true>
+<if @write_p;literal@ true>
 	<div class="list-button-bar-top">
 		<a href="@url@folder-create?parent_id=@folder_id@" class="button" title="#fs-portlet.create_new_folder#">#fs-portlet.create_new_folder#</a>
 		<a href="@url@file-add?folder_id=@folder_id@" class="button" title="#fs-portlet.upload_file#">#fs-portlet.upload_file#</a>
