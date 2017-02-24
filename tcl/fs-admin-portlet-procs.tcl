@@ -58,7 +58,7 @@ namespace eval fs_admin_portlet {
 
         @return element_id The new element's id
     } {
-	ns_log Warning "adding fs admin portlet to page - [get_my_name]"
+	#ns_log Warning "adding fs admin portlet to page - [get_my_name]"
         return [portal::add_element_parameters \
             -portal_id $portal_id \
             -portlet_name [get_my_name] \
