@@ -10,7 +10,8 @@
   <msg key="edit_upload_size_limit">Modifica il limite alla dimensione in upload</msg>
   <msg key="item">elemento</msg>
   <msg key="items">elementi</msg>
-  <msg key="lt_File_Storage_Administ">Amministrazione della File Storage</msg>
+  <msg key="lt_File_Storage_Administ">Amministrazione del File Storage</msg>
+  <msg key="open_folder_folders_name">Apri cartella %folders.name%</msg>
   <msg key="pretty_name">Documenti</msg>
   <msg key="upload_file">Carica un file</msg>
   <msg key="view_details">vedi i dettagli</msg>

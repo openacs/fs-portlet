@@ -66,12 +66,7 @@ set contents_url [export_vars -base ${url}folder-contents {folder_id recurse_p}]
 # Enable Notifications
 
 set folder_name [fs_get_folder_name $folder_id]
-set notification_chunk [notification::display::request_widget \
-    -type fs_fs_notif \
-    -object_id $folder_id \
-    -pretty_name $folder_name \
-    -url [ad_conn url]?folder_id=$folder_id \
-    ]
+set folder_url [export_vars -base [ad_conn url] {folder_id}]
 
 if {([info exists file_storage_package_id] && $file_storage_package_id ne "")} {
     set use_webdav_p  [parameter::get -package_id $file_storage_package_id -parameter "UseWebDavP"]
@@ -82,3 +77,9 @@ if {([info exists file_storage_package_id] && $file_storage_package_id ne "")} {
 }
 
 ad_return_template 
+
+# Local variables:
+#    mode: tcl
+#    tcl-indent-level: 4
+#    indent-tabs-mode: nil
+# End:

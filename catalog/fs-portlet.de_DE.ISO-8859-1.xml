@@ -11,6 +11,7 @@
   <msg key="item">Element</msg>
   <msg key="items">Elemente</msg>
   <msg key="lt_File_Storage_Administ">Dateiablage verwalten</msg>
+  <msg key="open_folder_folders_name">%folders.name% öffnen</msg>
   <msg key="pretty_name">Dateien</msg>
   <msg key="upload_file">Neue Datei hochladen</msg>
   <msg key="view_details">Details anzeigen</msg>
