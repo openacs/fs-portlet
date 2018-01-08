@@ -46,9 +46,6 @@ set scoped_p [ad_decode $config(scoped_p) t 1 0]
 set user_root_folder [dotlrn_fs::get_user_root_folder -user_id $user_id]
 set user_root_folder_present_p 0
 
-# this will be properly set by file-storage further on
-set root_folder_id ""
-
 if {$user_root_folder ne "" && $user_root_folder in $list_of_folder_ids} {
     set folder_id $user_root_folder
     set user_root_folder_present_p 1
