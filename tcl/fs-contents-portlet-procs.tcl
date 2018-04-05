@@ -65,7 +65,7 @@ namespace eval fs_contents_portlet {
     } {
         db_transaction {
             # Generate the element, don't use add_element_parameters here, 
-            # since it dosen't do the right thing for multiple elements with
+            # since it doesn't do the right thing for multiple elements with
             # the same datasource on a page. so we just use the more low level
             # portal::add_element
             set element_id [portal::add_element \
