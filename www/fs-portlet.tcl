@@ -50,6 +50,7 @@ if {$user_root_folder ne "" && $user_root_folder in $list_of_folder_ids} {
     set folder_id $user_root_folder
     set user_root_folder_present_p 1
     set use_ajaxfs_p 0
+    set file_storage_package_id ""
 } else {
     set folder_id [lindex $list_of_folder_ids 0]
     set file_storage_node_id [site_node::get_node_id_from_object_id \
@@ -158,7 +159,7 @@ if {$scoped_p} {
 set folder_name [fs_get_folder_name $folder_id]
 set folder_url [ad_conn url]?[ad_conn query]&folder_id=$folder_id
 
-if {([info exists file_storage_package_id] && $file_storage_package_id ne "")} {
+if {$file_storage_package_id ne ""} {
     set use_webdav_p  [parameter::get -package_id $file_storage_package_id -parameter "UseWebDavP"]
     
     if { $use_webdav_p == 1} { 

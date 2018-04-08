@@ -68,7 +68,7 @@ set contents_url [export_vars -base ${url}folder-contents {folder_id recurse_p}]
 set folder_name [fs_get_folder_name $folder_id]
 set folder_url [export_vars -base [ad_conn url] {folder_id}]
 
-if {([info exists file_storage_package_id] && $file_storage_package_id ne "")} {
+if {$file_storage_package_id ne ""} {
     set use_webdav_p  [parameter::get -package_id $file_storage_package_id -parameter "UseWebDavP"]
     
     if { $use_webdav_p == 1} { 
