@@ -24,7 +24,7 @@ ad_page_contract {
     @cvs_id $Id$
 } -query {
     {n_past_days "99999"}
-    {page_num:naturalnum ""}
+    {page_num:naturalnum 0}
 } -properties {
     user_id:onevalue
     user_root_folder:onevalue
