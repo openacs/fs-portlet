@@ -18,7 +18,7 @@
 
 %>
 
-<if @config.shaded_p;literal@ ne "t">
+<if @config.shaded_p;literal@ false>
 
 <include src="@scope_fs_url;literal@" &="folder_id" &="root_folder_id" viewing_user_id="@user_id;literal@"
 	 &="n_past_days" fs_url="@url;literal@">
