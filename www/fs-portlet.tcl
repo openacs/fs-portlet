@@ -41,7 +41,7 @@ array set config $cf
 set user_id [ad_conn user_id]
 set list_of_folder_ids $config(folder_id)
 set n_folders [llength $list_of_folder_ids]
-set scoped_p [ad_decode $config(scoped_p) t 1 0]
+set scoped_p [expr {$config(scoped_p) eq "t"}]
 
 set user_root_folder [dotlrn_fs::get_user_root_folder -user_id $user_id]
 set user_root_folder_present_p 0
@@ -85,7 +85,6 @@ if { !$scoped_p } {
     }
 }
 
-set query "select_folders"
 if {$scoped_p} {
     set scope_fs_url "/packages/file-storage/www/folder-chunk"
 } else {
@@ -148,7 +147,8 @@ if {$scoped_p} {
         }
     }
 
-    db_multirow folders $query {
+    db_multirow -extend {url} folders select_folders {
+        set url [site_node::get_url_from_object_id -object_id $url_package_id]
         # The name of the folder may contain message keys that need to be localized on the fly
         set name [lang::util::localize $name]
     }
@@ -167,8 +167,6 @@ if {$file_storage_package_id ne ""} {
         regsub -all {/\$} $webdav_url {/\\$} webdav_url
     }
 }
-
-ad_return_template 
 
 # Local variables:
 #    mode: tcl
