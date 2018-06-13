@@ -112,7 +112,7 @@ if {$scoped_p} {
             label "[_ file-storage.Name]"
             display_template {
                 <if @folders.type@ eq "folder">
-                <a href="@folders.url@?folder_id=@folders.object_id@">@folders.name@</a>      
+                <a href="@folders.url@?folder_id=@folders.object_id@">@folders.name@</a>
                 </if>
                 <elseif @folders.type@ eq "url">
                 <a href="@folders.url@url-goto?url_id=@folders.object_id@">@folders.name@</a>
@@ -147,11 +147,12 @@ if {$scoped_p} {
         }
     }
 
-    db_multirow -extend {url} folders select_folders {
+    db_multirow -extend { url } folders select_folders {} {
         set url [site_node::get_url_from_object_id -object_id $url_package_id]
         # The name of the folder may contain message keys that need to be localized on the fly
         set name [lang::util::localize $name]
     }
+
 }
 
 # Enable Notifications
