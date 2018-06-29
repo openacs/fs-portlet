@@ -21,7 +21,7 @@ ad_page_contract {
 
     @author yon (yon@openforce.net)
     @author Arjun Sanyal (arjun@openforce.net)
-    @cvs_id $Id$
+    @cvs-id $Id$
 } -query {
     {n_past_days "99999"}
     {page_num:naturalnum 0}

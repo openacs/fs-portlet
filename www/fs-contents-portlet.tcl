@@ -15,14 +15,14 @@
 #
 
 ad_page_contract {
-    The display logic for the fs contents portlet. 
+    The display logic for the fs contents portlet.
 
-    These portlets show the contents of the given folder in a table 
+    These portlets show the contents of the given folder in a table
 
     re-using a lot of code from fs-portlet
 
     @author Arjun Sanyal (arjun@openforce.net)
-    @version $Id$
+    @cvs-id $Id$
 
 } -query {
 } -properties {
