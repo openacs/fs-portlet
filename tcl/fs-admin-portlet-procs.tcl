@@ -33,6 +33,8 @@ namespace eval fs_admin_portlet {
 
     ad_proc -public get_pretty_name {
     } {
+        Get pretty name.
+    } {
         return "#fs-portlet.lt_File_Storage_Administ#"
     }
 
@@ -43,6 +45,8 @@ namespace eval fs_admin_portlet {
 
     ad_proc -public link {
     } {
+        Get link. This is currently empty.
+    } {
         return ""
     }
 
@@ -50,8 +54,9 @@ namespace eval fs_admin_portlet {
         {-portal_id:required}
         {-package_id:required}
     } {
-        Adds a faq admin PE to the given admin portal. There should only
-        ever be one of these portals on an admin page with only one faq_package_id
+        Adds a fs admin PE to the given admin portal. There should
+        only ever be one of these portals on an admin page with only
+        one fs_package_id.
 
         @param portal_id The page to add self to
         @param package_id the id of the faq package
@@ -70,7 +75,7 @@ namespace eval fs_admin_portlet {
     ad_proc -public remove_self_from_page {
         portal_id
     } {
-        Removes fs admin PE from the given portal
+        Removes fs admin PE from the given portal.
     } {
         portal::remove_element -portal_id $portal_id -portlet_name [get_my_name]
     }
@@ -78,7 +83,7 @@ namespace eval fs_admin_portlet {
     ad_proc -public show {
 	cf
     } {
-	shows the portlet
+	Shows the file-storage admin portlet.
     } {
 	portal::show_proc_helper \
             -package_key [my_package_key] \

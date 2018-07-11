@@ -38,10 +38,14 @@ namespace eval fs_portlet {
 
     ad_proc -public get_pretty_name {
     } {
+        Get pretty name.
+    } {
         return [parameter::get_from_package_key -package_key [my_package_key] -parameter pretty_name]
     }
 
     ad_proc -public link {
+    } {
+        Get link. This is currently empty.
     } {
         return ""
     }
@@ -55,8 +59,8 @@ namespace eval fs_portlet {
         {-force_region ""}
         {-param_action:required}
     } {
-        Adds a fs PE to the given page. If there's already and fs pe,
-        it appends the values to the pe's params.
+        Adds a fs PE to the given page. If there's already a fs PE,
+        it appends the values to PE's params.
 
         @param portal_id The page to add self to
         @param folder_id The folder to show
@@ -90,7 +94,7 @@ namespace eval fs_portlet {
         {-package_id:required}
         {-folder_id:required}
     } {
-          Removes a fs PE from the given page
+        Removes a fs PE from the given page.
     } {
         set extra_params [list package_id $package_id]
 
@@ -103,8 +107,9 @@ namespace eval fs_portlet {
     }
 
     ad_proc -public show {
-         cf
+        cf
     } {
+        Show the file-storage portlet.
     } {
         portal::show_proc_helper \
             -package_key [my_package_key] \
