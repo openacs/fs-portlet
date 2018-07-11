@@ -37,12 +37,15 @@ namespace eval fs_contents_portlet {
     }
 
     ad_proc -public get_pretty_name {
+    } {
         We want the pretty_name to be passed in from the applet. 
     } {
-        error
+        error "pretty_name must be passed in from the applet."
     }
 
     ad_proc -public link {
+    } {
+        Get link. This is currently empty.
     } {
         return ""
     }
@@ -55,8 +58,8 @@ namespace eval fs_contents_portlet {
         {-page_name ""}
         {-hide_p ""}
     } {
-        Adds a fs PE to the given page. If there's already and fs pe,
-        it appends the values to the pe's params.
+        Adds a fs PE to the given page. If there's already a fs PE,
+        it appends the values to PE's params.
 
         @param portal_id The page to add self to
         @param folder_id The folder to show
@@ -90,7 +93,7 @@ namespace eval fs_contents_portlet {
         {-package_id:required}
         {-folder_id:required}
     } {
-          Removes a fs PE from the given page
+        Removes a fs PE from the given page.
     } {
         set extra_params [list package_id $package_id]
 
@@ -103,9 +106,10 @@ namespace eval fs_contents_portlet {
     }
 
     ad_proc -public show {
-         cf
+        cf
     } {
-        Note: we use the fs_portlet's pk here
+        Show file-storage content portlet.
+        Note: we use the fs_portlet's package key here.
     } {
         portal::show_proc_helper \
             -package_key [fs_portlet::my_package_key] \
