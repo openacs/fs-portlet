@@ -21,6 +21,19 @@ aa_register_case -procs {
     aa_equals "FS contents portlet link"    "[fs_contents_portlet::link]" ""
 }
 
+aa_register_case -procs {
+        fs_admin_portlet::get_pretty_name
+        fs_contents_portlet::get_pretty_name
+    } -cats {
+        api
+        production_safe
+    } fs_portlet__names {
+        Test diverse name procs.
+} {
+    aa_equals "Pretty name" "[fs_admin_portlet::get_pretty_name]" "#fs-portlet.lt_File_Storage_Administ#"
+    aa_true "Contents pretty name should return an error" "[catch {fs_contents_portlet::get_pretty_name}]"
+}
+
 # Local variables:
 #    mode: tcl
 #    tcl-indent-level: 4
