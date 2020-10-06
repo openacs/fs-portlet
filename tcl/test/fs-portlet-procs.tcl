@@ -22,6 +22,7 @@ aa_register_case -procs {
 }
 
 aa_register_case -procs {
+        fs_portlet::get_pretty_name
         fs_admin_portlet::get_pretty_name
         fs_contents_portlet::get_pretty_name
     } -cats {
@@ -30,7 +31,9 @@ aa_register_case -procs {
     } fs_portlet__names {
         Test diverse name procs.
 } {
-    aa_equals "Pretty name" "[fs_admin_portlet::get_pretty_name]" "#fs-portlet.lt_File_Storage_Administ#"
+    set pretty_name [parameter::get_from_package_key -package_key [fs_portlet::my_package_key] -parameter pretty_name]
+    aa_equals "Pretty name" "[fs_portlet::get_pretty_name]" "$pretty_name"
+    aa_equals "Admin pretty name" "[fs_admin_portlet::get_pretty_name]" "#fs-portlet.lt_File_Storage_Administ#"
     aa_true "Contents pretty name should return an error" "[catch {fs_contents_portlet::get_pretty_name}]"
 }
 
