@@ -46,7 +46,7 @@ set scoped_p [expr {$config(scoped_p) eq "t"}]
 set user_root_folder [dotlrn_fs::get_user_root_folder -user_id $user_id]
 set user_root_folder_present_p 0
 
-if {$user_root_folder ne "" && $user_root_folder in $list_of_folder_ids} {
+if {$user_root_folder ne "" && ($user_root_folder in $list_of_folder_ids || $list_of_folder_ids == 0)} {
     set folder_id $user_root_folder
     set user_root_folder_present_p 1
     set use_ajaxfs_p 0
