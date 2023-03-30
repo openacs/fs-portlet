@@ -69,11 +69,12 @@ set folder_name [fs_get_folder_name $folder_id]
 set folder_url [export_vars -base [ad_conn url] {folder_id}]
 
 if {$file_storage_package_id ne ""} {
-    set use_webdav_p  [parameter::get -package_id $file_storage_package_id -parameter "UseWebDavP"]
-    
-    if { $use_webdav_p == 1} { 
-	set webdav_url [fs::webdav_url -item_id $folder_id -package_id $file_storage_package_id]
-    }
+    #
+    # This will return empty when webDAV is not enabled
+    #
+    set webdav_url [fs::webdav_url \
+                        -item_id $folder_id \
+                        -package_id $file_storage_package_id]
 }
 
 ad_return_template 
