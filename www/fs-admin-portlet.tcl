@@ -38,7 +38,16 @@ set user_id [ad_conn user_id]
 
 ad_return_template
 
-set package_id [site_node_apm_integration::get_child_package_id -package_key "file-storage"]
+#
+# Get the file-storage instance mounted underneath our node. Note
+# that, in theory, multiple instances might be mounted, but this
+# portlet's logics will assume only one exist in practice.
+#
+set package_id [lindex [site_node::get_children \
+                            -package_key "file-storage" \
+                            -element object_id \
+                            -node_id [ad_conn node_id]] 0]
+
 set fs_url [export_vars -base /shared/parameters {package_id return_url}]
 set show_fs_url_p [parameter::get_from_package_key -parameter ShowParametersLinkP -package_key [fs_portlet::my_package_key] -default 1]
 
