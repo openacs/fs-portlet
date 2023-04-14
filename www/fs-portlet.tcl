@@ -53,12 +53,15 @@ if {$user_root_folder ne "" && ($user_root_folder in $list_of_folder_ids || $lis
     set file_storage_package_id ""
 } else {
     set folder_id [lindex $list_of_folder_ids 0]
-    set file_storage_node_id [site_node::get_node_id_from_object_id \
-                             -object_id [ad_conn package_id]]
-    set file_storage_package_id [site_node::get_children \
-                                -package_key file-storage \
-                                -node_id $file_storage_node_id \
-                                -element package_id]
+    #
+    # Get the file-storage instance mounted underneath our node. Note
+    # that, in theory, multiple instances might be mounted, but this
+    # portlet's logics will assume only one exist in practice.
+    #
+    set file_storage_package_id [lindex [site_node::get_children \
+                                             -package_key "file-storage" \
+                                             -element object_id \
+                                             -node_id [ad_conn node_id]] 0]
     set use_ajaxfs_p [parameter::get -package_id $file_storage_package_id -parameter UseAjaxFs -default 0]
 
 }
