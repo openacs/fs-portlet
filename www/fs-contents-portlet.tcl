@@ -44,16 +44,25 @@ if {$n_folders != 1} {
     return -code error "can't have more than one folder"
 }
 
-# Get the root folder for the file storage instance we belong to, which is defined as the
-# one mounted beneath the current package (dotlrn or acs-subsite).  Root folder should really
-# be a parameter to the portlet, something I'll consider for 5.2/2.2.
+#
+# Get the root folder for the file storage instance we belong to,
+# which is defined as the one mounted beneath the current package
+# (dotlrn or acs-subsite).
+#
+# Note that, in theory, multiple instances might be mounted, but this
+# portlet's logics will assume only one exist. One way to address this
+# would be to e.g. have a parameter specifiying exactly which instance
+# in "ours". This has been considered in the past, but never been a
+# real problem in practice.
+#
 
 set file_storage_node_id [site_node::get_node_id_from_object_id \
                              -object_id [ad_conn package_id]]
-set file_storage_package_id [site_node::get_children \
-                                -package_key file-storage \
-                                -node_id $file_storage_node_id \
-                                -element package_id]
+
+set file_storage_package_id [lindex [site_node::get_children \
+                                         -package_key file-storage \
+                                         -node_id $file_storage_node_id \
+                                         -element package_id] 0]
 set root_folder_id [fs::get_root_folder -package_id $file_storage_package_id]
 
 set folder_id [lindex $list_of_folder_ids 0]
