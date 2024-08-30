@@ -19,7 +19,7 @@ ad_page_contract {
 
     These portlets show the contents of the given folder in a table
 
-    re-using a lot of code from fs-portlet
+    reusing a lot of code from fs-portlet
 
     @author Arjun Sanyal (arjun@openforce.net)
     @cvs-id $Id$
@@ -51,7 +51,7 @@ if {$n_folders != 1} {
 #
 # Note that, in theory, multiple instances might be mounted, but this
 # portlet's logics will assume only one exist. One way to address this
-# would be to e.g. have a parameter specifiying exactly which instance
+# would be to e.g. have a parameter specifying exactly which instance
 # in "ours". This has been considered in the past, but never been a
 # real problem in practice.
 #
