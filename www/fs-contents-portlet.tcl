@@ -19,7 +19,7 @@ ad_page_contract {
 
     These portlets show the contents of the given folder in a table
 
-    re-using a lot of code from fs-portlet
+    reusing a lot of code from fs-portlet
 
     @author Arjun Sanyal (arjun@openforce.net)
     @cvs-id $Id$
@@ -44,16 +44,25 @@ if {$n_folders != 1} {
     return -code error "can't have more than one folder"
 }
 
-# Get the root folder for the file storage instance we belong to, which is defined as the
-# one mounted beneath the current package (dotlrn or acs-subsite).  Root folder should really
-# be a parameter to the portlet, something I'll consider for 5.2/2.2.
+#
+# Get the root folder for the file storage instance we belong to,
+# which is defined as the one mounted beneath the current package
+# (dotlrn or acs-subsite).
+#
+# Note that, in theory, multiple instances might be mounted, but this
+# portlet's logics will assume only one exist. One way to address this
+# would be to e.g. have a parameter specifying exactly which instance
+# in "ours". This has been considered in the past, but never been a
+# real problem in practice.
+#
 
 set file_storage_node_id [site_node::get_node_id_from_object_id \
                              -object_id [ad_conn package_id]]
-set file_storage_package_id [site_node::get_children \
-                                -package_key file-storage \
-                                -node_id $file_storage_node_id \
-                                -element package_id]
+
+set file_storage_package_id [lindex [site_node::get_children \
+                                         -package_key file-storage \
+                                         -node_id $file_storage_node_id \
+                                         -element package_id] 0]
 set root_folder_id [fs::get_root_folder -package_id $file_storage_package_id]
 
 set folder_id [lindex $list_of_folder_ids 0]
@@ -69,11 +78,12 @@ set folder_name [fs_get_folder_name $folder_id]
 set folder_url [export_vars -base [ad_conn url] {folder_id}]
 
 if {$file_storage_package_id ne ""} {
-    set use_webdav_p  [parameter::get -package_id $file_storage_package_id -parameter "UseWebDavP"]
-    
-    if { $use_webdav_p == 1} { 
-	set webdav_url [fs::webdav_url -item_id $folder_id -package_id $file_storage_package_id]
-    }
+    #
+    # This will return empty when webDAV is not enabled
+    #
+    set webdav_url [fs::webdav_url \
+                        -item_id $folder_id \
+                        -package_id $file_storage_package_id]
 }
 
 ad_return_template 
